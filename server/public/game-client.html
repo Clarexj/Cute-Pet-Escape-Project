@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可爱宠物大逃杀 - 完整游戏测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 大厅界面 */
+        .lobby-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .lobby-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .lobby-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .lobby-header h1 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .lobby-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .character-select {
+            margin-bottom: 30px;
+        }
+
+        .character-select h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .character-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .character-card {
+            background: #f7f7f7;
+            border: 3px solid transparent;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .character-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .character-card.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+        }
+
+        .character-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .character-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .character-desc {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .ai-option {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .ai-option label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .ai-option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        /* 游戏界面 */
+        .game-screen {
+            display: none;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .game-header {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .game-info {
+            display: flex;
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .game-area {
+            flex: 1;
+            position: relative;
+            background:
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                #2c3e50;
+            background-size: 50px 50px;
+            overflow: hidden;
+        }
+
+        .player {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            transition: all 0.15s ease-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .player.survivor {
+            background: #3498db;
+            border: 4px solid #2980b9;
+        }
+
+        .player.hunter {
+            background: #e74c3c;
+            border: 4px solid #c0392b;
+        }
+
+        .player.local {
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.6);
+        }
+
+        .player-name {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 11px;
+            white-space: nowrap;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .game-controls {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            gap: 10px;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .control-btn {
+            padding: 15px;
+            background: #34495e;
+            color: white;
+            border: 2px solid #2c3e50;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .control-btn:hover {
+            background: #4a6278;
+            transform: scale(1.05);
+        }
+
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+
+        .control-btn:nth-child(2) { grid-column: 2; }
+        .control-btn:nth-child(4) { grid-column: 1; }
+        .control-btn:nth-child(5) { grid-column: 2; }
+        .control-btn:nth-child(6) { grid-column: 3; }
+
+        .player-list {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 200px;
+        }
+
+        .player-list h4 {
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .player-list ul {
+            list-style: none;
+        }
+
+        .player-list li {
+            color: white;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 5px;
+            border-radius: 5px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .status.info { background: #d1ecf1; color: #0c5460; }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .player.moving {
+            animation: pulse 0.3s ease-in-out;
+        }
+
+        .ai-badge {
+            background: #f39c12;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- 大厅界面 -->
+    <div class="lobby-screen" id="lobbyScreen">
+        <div class="lobby-container">
+            <div class="lobby-header">
+                <h1>🎮 可爱宠物大逃杀</h1>
+                <p>选择角色开始游戏</p>
+            </div>
+
+            <div id="statusMessage"></div>
+
+            <!-- 角色选择 -->
+            <div class="character-select">
+                <h3>选择你的角色</h3>
+                <div class="character-options">
+                    <div class="character-card" onclick="selectCharacter('survivor')">
+                        <div class="character-icon">🐱</div>
+                        <div class="character-name">逃生者</div>
+                        <div class="character-desc">收集资源，逃离追捕</div>
+                    </div>
+                    <div class="character-card" onclick="selectCharacter('hunter')">
+                        <div class="character-icon">🐺</div>
+                        <div class="character-name">追捕者</div>
+                        <div class="character-desc">追踪并抓住逃生者</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 玩家名称 -->
+            <div class="input-group">
+                <label>玩家名称</label>
+                <input type="text" id="playerName" placeholder="输入你的名字">
+            </div>
+
+            <!-- AI选项 -->
+            <div class="ai-option">
+                <label>
+                    <input type="checkbox" id="enableAI" checked>
+                    <span>启用AI机器人（单人也能玩）</span>
+                </label>
+            </div>
+
+            <!-- 房间选项 -->
+            <div class="input-group">
+                <label>加入房间（可选）</label>
+                <input type="text" id="roomId" placeholder="输入房间ID加入现有房间">
+            </div>
+
+            <!-- 按钮 -->
+            <button class="btn" onclick="startGame()">开始游戏</button>
+            <button class="btn btn-secondary" onclick="generateRandomName()">随机名字</button>
+        </div>
+    </div>
+
+    <!-- 游戏界面 -->
+    <div class="game-screen" id="gameScreen">
+        <div class="game-header">
+            <div class="game-info">
+                <div class="info-item">
+                    <span>🏠 房间:</span>
+                    <span id="currentRoomId">----</span>
+                </div>
+                <div class="info-item">
+                    <span>👥 玩家:</span>
+                    <span id="playerCount">0/5</span>
+                </div>
+                <div class="info-item">
+                    <span>⏱️ 时间:</span>
+                    <span id="gameTime">00:00</span>
+                </div>
+            </div>
+            <button class="btn" style="width: auto; padding: 8px 20px; margin: 0;" onclick="leaveGame()">离开游戏</button>
+        </div>
+
+        <div class="game-area" id="gameArea">
+            <!-- 玩家列表 -->
+            <div class="player-list">
+                <h4>在线玩家</h4>
+                <ul id="playersUl"></ul>
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <div class="controls-grid">
+                <button class="control-btn" onclick="move(0, -15)">↑</button>
+                <button class="control-btn" onclick="move(-15, 0)">←</button>
+                <button class="control-btn" onclick="move(0, 15)">↓</button>
+                <button class="control-btn" onclick="move(15, 0)">→</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Colyseus -->
+    <script src="https://unpkg.com/colyseus.js@0.15.0/dist/colyseus.js"></script>
+
+    <script>
+        let client = null;
+        let room = null;
+        let localSessionId = null;
+        let selectedCharacter = 'survivor';
+        let playerElements = new Map();
+        let aiPlayers = new Map();
+        let gameStartTime = null;
+
+        // 选择角色
+        function selectCharacter(type) {
+            selectedCharacter = type;
+            document.querySelectorAll('.character-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.target.closest('.character-card').classList.add('selected');
+        }
+
+        // 生成随机名字
+        function generateRandomName() {
+            const adjectives = ['快乐', '勇敢', '聪明', '可爱', '神秘', '调皮', '温柔', '活泼'];
+            const nouns = ['小猫', '小狗', '小兔', '小熊', '小鸟', '小狐', '小鹿', '小猪'];
+            const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+            const noun = nouns[Math.floor(Math.random() * nouns.length)];
+            const num = Math.floor(Math.random() * 100);
+            document.getElementById('playerName').value = `${adj}的${noun}${num}`;
+        }
+
+        // 显示状态
+        function showStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+            setTimeout(() => {
+                statusDiv.innerHTML = '';
+            }, 3000);
+        }
+
+        // 开始游戏
+        async function startGame() {
+            const playerName = document.getElementById('playerName').value || generateRandomName();
+            const roomId = document.getElementById('roomId').value;
+            const enableAI = document.getElementById('enableAI').checked;
+
+            try {
+                showStatus('正在连接服务器...', 'info');
+
+                client = new Colyseus.Client('ws://localhost:2567');
+
+                if (roomId) {
+                    room = await client.joinById(roomId, {
+                        playerName,
+                        characterType: selectedCharacter
+                    });
+                } else {
+                    room = await client.create('game_room', {
+                        playerName,
+                        characterType: selectedCharacter
+                    });
+                }
+
+                localSessionId = room.sessionId;
+                setupRoomHandlers();
+
+                // 切换到游戏界面
+                document.getElementById('lobbyScreen').style.display = 'none';
+                document.getElementById('gameScreen').style.display = 'flex';
+                document.getElementById('currentRoomId').textContent = room.id;
+
+                // 启动AI
+                if (enableAI) {
+                    setTimeout(() => spawnAIPlayers(), 1000);
+                }
+
+                // 启动计时器
+                gameStartTime = Date.now();
+                setInterval(updateGameTime, 1000);
+
+            } catch (error) {
+                showStatus('连接失败: ' + error.message, 'error');
+            }
+        }
+
+        // 设置房间事件
+        function setupRoomHandlers() {
+            room.state.players.onAdd((player, sessionId) => {
+                createPlayerElement(sessionId, player);
+                updatePlayerList();
+            });
+
+            room.state.players.onRemove((player, sessionId) => {
+                removePlayerElement(sessionId);
+                updatePlayerList();
+            });
+
+            room.state.players.onAdd((player, sessionId) => {
+                player.onChange(() => {
+                    updatePlayerElement(sessionId, player);
+                });
+            });
+        }
+
+        // 创建玩家元素
+        function createPlayerElement(sessionId, player) {
+            const gameArea = document.getElementById('gameArea');
+            const playerDiv = document.createElement('div');
+            const isLocal = sessionId === localSessionId;
+            const isHunter = player.characterType === 'hunter';
+
+            playerDiv.className = `player ${isHunter ? 'hunter' : 'survivor'} ${isLocal ? 'local' : ''}`;
+            playerDiv.id = `player-${sessionId}`;
+            playerDiv.innerHTML = isHunter ? '🐺' : '🐱';
+            playerDiv.style.left = player.x + 'px';
+            playerDiv.style.top = player.y + 'px';
+
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'player-name';
+            nameDiv.textContent = player.name + (isLocal ? ' (你)' : '');
+            playerDiv.appendChild(nameDiv);
+
+            gameArea.appendChild(playerDiv);
+            playerElements.set(sessionId, playerDiv);
+        }
+
+        // 更新玩家元素
+        function updatePlayerElement(sessionId, player) {
+            const playerDiv = playerElements.get(sessionId);
+            if (playerDiv) {
+                playerDiv.style.left = player.x + 'px';
+                playerDiv.style.top = player.y + 'px';
+
+                if (player.isMoving) {
+                    playerDiv.classList.add('moving');
+                } else {
+                    playerDiv.classList.remove('moving');
+                }
+            }
+        }
+
+        // 移除玩家元素
+        function removePlayerElement(sessionId) {
+            const playerDiv = playerElements.get(sessionId);
+            if (playerDiv) {
+                playerDiv.remove();
+                playerElements.delete(sessionId);
+            }
+        }
+
+        // 更新玩家列表
+        function updatePlayerList() {
+            const playersUl = document.getElementById('playersUl');
+            const playerCountSpan = document.getElementById('playerCount');
+
+            if (!room || !room.state) return;
+
+            const players = Array.from(room.state.players.entries());
+            playersUl.innerHTML = '';
+
+            players.forEach(([sessionId, player]) => {
+                const li = document.createElement('li');
+                const isLocal = sessionId === localSessionId;
+                const isAI = aiPlayers.has(sessionId);
+                const icon = player.characterType === 'hunter' ? '🐺' : '🐱';
+
+                li.innerHTML = `
+                    ${icon} ${player.name}
+                    ${isLocal ? '(你)' : ''}
+                    ${isAI ? '<span class="ai-badge">AI</span>' : ''}
+                `;
+                playersUl.appendChild(li);
+            });
+
+            playerCountSpan.textContent = `${players.length}/5`;
+        }
+
+        // 移动函数
+        function move(dx, dy) {
+            if (!room) return;
+
+            const playerDiv = playerElements.get(localSessionId);
+            if (!playerDiv) return;
+
+            let x = parseInt(playerDiv.style.left) + dx;
+            let y = parseInt(playerDiv.style.top) + dy;
+
+            const gameArea = document.getElementById('gameArea');
+            const maxX = gameArea.clientWidth - 50;
+            const maxY = gameArea.clientHeight - 50;
+
+            x = Math.max(0, Math.min(maxX, x));
+            y = Math.max(0, Math.min(maxY, y));
+
+            room.send("playerMove", {
+                x, y, z: 0,
+                rotationY: dx > 0 ? 90 : dx < 0 ? -90 : 0,
+                isMoving: true,
+                animationState: "run",
+                timestamp: Date.now()
+            });
+
+            setTimeout(() => {
+                room.send("playerMove", {
+                    x, y, z: 0,
+                    rotationY: 0,
+                    isMoving: false,
+                    animationState: "idle",
+                    timestamp: Date.now()
+                });
+            }, 200);
+        }
+
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            if (!room) return;
+
+            switch(e.key) {
+                case 'ArrowUp': case 'w': case 'W': move(0, -15); e.preventDefault(); break;
+                case 'ArrowDown': case 's': case 'S': move(0, 15); e.preventDefault(); break;
+                case 'ArrowLeft': case 'a': case 'A': move(-15, 0); e.preventDefault(); break;
+                case 'ArrowRight': case 'd': case 'D': move(15, 0); e.preventDefault(); break;
+            }
+        });
+
+        // 生成AI玩家
+        async function spawnAIPlayers() {
+            const aiNames = ['机器人小明', '机器人小红', '机器人小刚'];
+            const aiTypes = ['survivor', 'survivor', 'hunter'];
+
+            for (let i = 0; i < 3; i++) {
+                try {
+                    const aiRoom = await client.joinById(room.id, {
+                        playerName: aiNames[i],
+                        characterType: aiTypes[i]
+                    });
+                    aiPlayers.set(aiRoom.sessionId, aiRoom);
+
+                    // AI随机移动
+                    setInterval(() => {
+                        const dx = (Math.random() - 0.5) * 30;
+                        const dy = (Math.random() - 0.5) * 30;
+                        aiRoom.send("playerMove", {
+                            x: 200 + dx * Math.random() * 10,
+                            y: 150 + dy * Math.random() * 10,
+                            z: 0,
+                            rotationY: 0,
+                            isMoving: Math.random() > 0.5,
+                            animationState: Math.random() > 0.5 ? "run" : "idle",
+                            timestamp: Date.now()
+                        });
+                    }, 2000 + Math.random() * 2000);
+                } catch (e) {
+                    console.log('AI加入失败:', e.message);
+                }
+            }
+        }
+
+        // 更新游戏时间
+        function updateGameTime() {
+            if (!gameStartTime) return;
+            const elapsed = Math.floor((Date.now() - gameStartTime) / 1000);
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            document.getElementById('gameTime').textContent =
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // 离开游戏
+        function leaveGame() {
+            if (room) {
+                room.leave();
+                aiPlayers.forEach(ai => ai.leave());
+            }
+            location.reload();
+        }
+
+        // 初始化
+        window.onload = function() {
+            generateRandomName();
+            document.querySelector('.character-card').classList.add('selected');
+        };
+    </script>
+</body>
+</html>

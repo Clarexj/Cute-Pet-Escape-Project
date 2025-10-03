@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联机测试 - 调试版</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .header {
+            background: #2c3e50;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info { display: flex; gap: 20px; }
+        .info-item { display: flex; align-items: center; gap: 5px; }
+
+        .game-area {
+            flex: 1;
+            position: relative;
+            background:
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                #0a0a0a;
+            background-size: 50px 50px;
+        }
+
+        .player {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            transition: all 0.2s;
+            border: 4px solid;
+        }
+
+        .player.survivor { background: #3498db; border-color: #2980b9; }
+        .player.hunter { background: #e74c3c; border-color: #c0392b; }
+        .player.local { box-shadow: 0 0 30px yellow; }
+
+        .player-name {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .controls {
+            background: #2c3e50;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 70px);
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 15px;
+            background: #34495e;
+            color: white;
+            border: 2px solid #4a6278;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .btn:hover { background: #4a6278; transform: scale(1.05); }
+        .btn:active { transform: scale(0.95); }
+        .btn:nth-child(2) { grid-column: 2; }
+        .btn:nth-child(4) { grid-column: 1; }
+        .btn:nth-child(5) { grid-column: 2; }
+        .btn:nth-child(6) { grid-column: 3; }
+
+        .debug-panel {
+            background: #000;
+            color: #0f0;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            border-top: 2px solid #333;
+        }
+
+        .log { margin-bottom: 3px; }
+        .log.error { color: #f00; }
+        .log.success { color: #0f0; }
+        .log.info { color: #0ff; }
+
+        .player-list {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.9);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 200px;
+        }
+
+        .player-list h4 { color: #3498db; margin-bottom: 10px; }
+        .player-list li {
+            list-style: none;
+            padding: 8px;
+            background: rgba(255,255,255,0.1);
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        .ai-badge {
+            background: #f39c12;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 9px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="info">
+            <div class="info-item">🏠 房间: <strong id="roomId">--</strong></div>
+            <div class="info-item">👥 玩家: <strong id="playerCount">0</strong></div>
+            <div class="info-item">🎮 状态: <strong id="status">未连接</strong></div>
+        </div>
+        <div>
+            <button class="btn" onclick="location.reload()" style="padding: 8px 20px;">重新开始</button>
+        </div>
+    </div>
+
+    <div class="game-area" id="gameArea">
+        <div class="player-list">
+            <h4>在线玩家</h4>
+            <ul id="playerList"></ul>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="btn-grid">
+            <button class="btn" onclick="move(0, -20)">↑</button>
+            <button class="btn" onclick="move(-20, 0)">←</button>
+            <button class="btn" onclick="move(0, 20)">↓</button>
+            <button class="btn" onclick="move(20, 0)">→</button>
+        </div>
+        <div style="color: white;">使用 WASD 或方向键移动</div>
+    </div>
+
+    <div class="debug-panel" id="debug"></div>
+
+    <script src="https://unpkg.com/colyseus.js@0.15.0/dist/colyseus.js"></script>
+    <script>
+        let client, room, localSessionId;
+        let playerElements = new Map();
+        let aiPlayers = new Map();
+
+        function log(msg, type = 'info') {
+            const debug = document.getElementById('debug');
+            const div = document.createElement('div');
+            div.className = 'log ' + type;
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            debug.appendChild(div);
+            debug.scrollTop = debug.scrollHeight;
+            console.log(msg);
+        }
+
+        async function init() {
+            try {
+                log('正在连接服务器...', 'info');
+                client = new Colyseus.Client('ws://localhost:2567');
+
+                const playerName = prompt('输入你的名字:', '玩家' + Math.floor(Math.random() * 100)) || '测试玩家';
+                const characterType = confirm('选择角色:\n确定=逃生者🐱, 取消=追捕者🐺') ? 'survivor' : 'hunter';
+
+                log(`创建房间: ${playerName} (${characterType})`, 'info');
+                room = await client.create('game_room', { playerName, characterType });
+
+                localSessionId = room.sessionId;
+                document.getElementById('roomId').textContent = room.id;
+                document.getElementById('status').textContent = '已连接';
+
+                log(`✅ 房间创建成功: ${room.id}`, 'success');
+                log(`✅ 你的会话ID: ${localSessionId}`, 'success');
+
+                setupRoom();
+
+                // 1秒后添加AI
+                setTimeout(spawnAI, 1000);
+
+            } catch (e) {
+                log(`❌ 错误: ${e.message}`, 'error');
+                alert('连接失败: ' + e.message);
+            }
+        }
+
+        function setupRoom() {
+            room.state.players.onAdd((player, sessionId) => {
+                log(`👤 玩家加入: ${player.name} (${sessionId})`, 'success');
+                createPlayer(sessionId, player);
+                updatePlayerList();
+            });
+
+            room.state.players.onRemove((player, sessionId) => {
+                log(`👋 玩家离开: ${player.name}`, 'info');
+                removePlayer(sessionId);
+                updatePlayerList();
+            });
+
+            room.state.players.onAdd((player, sessionId) => {
+                player.onChange(() => {
+                    updatePlayer(sessionId, player);
+                });
+            });
+        }
+
+        function createPlayer(sessionId, player) {
+            const gameArea = document.getElementById('gameArea');
+            const isLocal = sessionId === localSessionId;
+            const isHunter = player.characterType === 'hunter';
+
+            // 确保玩家在可见位置
+            let x = player.x || (Math.random() * 400 + 200);
+            let y = player.y || (Math.random() * 300 + 150);
+
+            const playerDiv = document.createElement('div');
+            playerDiv.className = `player ${isHunter ? 'hunter' : 'survivor'} ${isLocal ? 'local' : ''}`;
+            playerDiv.id = `player-${sessionId}`;
+            playerDiv.innerHTML = isHunter ? '🐺' : '🐱';
+            playerDiv.style.left = x + 'px';
+            playerDiv.style.top = y + 'px';
+
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'player-name';
+            nameDiv.textContent = player.name + (isLocal ? ' (你)' : '');
+            playerDiv.appendChild(nameDiv);
+
+            gameArea.appendChild(playerDiv);
+            playerElements.set(sessionId, playerDiv);
+
+            log(`🎨 渲染玩家: ${player.name} 位置(${x}, ${y})`, 'info');
+        }
+
+        function updatePlayer(sessionId, player) {
+            const playerDiv = playerElements.get(sessionId);
+            if (playerDiv && player.x !== undefined && player.y !== undefined) {
+                playerDiv.style.left = player.x + 'px';
+                playerDiv.style.top = player.y + 'px';
+            }
+        }
+
+        function removePlayer(sessionId) {
+            const playerDiv = playerElements.get(sessionId);
+            if (playerDiv) {
+                playerDiv.remove();
+                playerElements.delete(sessionId);
+            }
+        }
+
+        function updatePlayerList() {
+            const list = document.getElementById('playerList');
+            const count = document.getElementById('playerCount');
+
+            if (!room || !room.state) return;
+
+            const players = Array.from(room.state.players.entries());
+            list.innerHTML = '';
+
+            players.forEach(([sessionId, player]) => {
+                const li = document.createElement('li');
+                const isLocal = sessionId === localSessionId;
+                const isAI = aiPlayers.has(sessionId);
+                const icon = player.characterType === 'hunter' ? '🐺' : '🐱';
+
+                li.innerHTML = `${icon} ${player.name} ${isLocal ? '(你)' : ''} ${isAI ? '<span class="ai-badge">AI</span>' : ''}`;
+                list.appendChild(li);
+            });
+
+            count.textContent = players.length;
+        }
+
+        function move(dx, dy) {
+            if (!room) return;
+
+            const playerDiv = playerElements.get(localSessionId);
+            if (!playerDiv) return;
+
+            let x = parseInt(playerDiv.style.left) || 300;
+            let y = parseInt(playerDiv.style.top) || 200;
+
+            x += dx;
+            y += dy;
+
+            const gameArea = document.getElementById('gameArea');
+            x = Math.max(0, Math.min(gameArea.clientWidth - 60, x));
+            y = Math.max(0, Math.min(gameArea.clientHeight - 60, y));
+
+            room.send("playerMove", {
+                x, y, z: 0,
+                rotationY: 0,
+                isMoving: true,
+                animationState: "run",
+                timestamp: Date.now()
+            });
+
+            log(`📍 移动到: (${x}, ${y})`, 'info');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (!room) return;
+            switch(e.key) {
+                case 'ArrowUp': case 'w': case 'W': move(0, -20); break;
+                case 'ArrowDown': case 's': case 'S': move(0, 20); break;
+                case 'ArrowLeft': case 'a': case 'A': move(-20, 0); break;
+                case 'ArrowRight': case 'd': case 'D': move(20, 0); break;
+            }
+        });
+
+        async function spawnAI() {
+            log('🤖 开始添加AI玩家...', 'info');
+
+            const aiNames = ['AI小明', 'AI小红', 'AI小刚'];
+            const aiTypes = ['survivor', 'survivor', 'hunter'];
+
+            for (let i = 0; i < 3; i++) {
+                try {
+                    const aiRoom = await client.joinById(room.id, {
+                        playerName: aiNames[i],
+                        characterType: aiTypes[i]
+                    });
+
+                    aiPlayers.set(aiRoom.sessionId, aiRoom);
+                    log(`✅ AI加入成功: ${aiNames[i]}`, 'success');
+
+                    // AI随机移动
+                    setInterval(() => {
+                        const x = 200 + Math.random() * 400;
+                        const y = 150 + Math.random() * 300;
+                        aiRoom.send("playerMove", {
+                            x, y, z: 0,
+                            rotationY: 0,
+                            isMoving: Math.random() > 0.5,
+                            animationState: Math.random() > 0.5 ? "run" : "idle",
+                            timestamp: Date.now()
+                        });
+                    }, 2000 + Math.random() * 2000);
+
+                } catch (e) {
+                    log(`❌ AI加入失败: ${e.message}`, 'error');
+                }
+            }
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>

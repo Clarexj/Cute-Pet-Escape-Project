@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萌宠大逃亡 - 完整版</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: white;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .header-left { display: flex; gap: 30px; align-items: center; }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .info-item strong {
+            color: #ffd700;
+            font-size: 16px;
+        }
+
+        .game-container {
+            display: flex;
+            height: calc(100vh - 70px);
+        }
+
+        .game-area {
+            flex: 1;
+            position: relative;
+            background: linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), #0f3460;
+            background-size: 50px 50px;
+        }
+
+        /* 玩家 */
+        .player {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            transition: all 0.15s ease-out;
+            border: 4px solid;
+            z-index: 100;
+        }
+
+        .player.survivor {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #4a5fd4;
+        }
+
+        .player.hunter {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-color: #e74c3c;
+        }
+
+        .player.local {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        .player.captured {
+            opacity: 0.6;
+            filter: grayscale(50%);
+        }
+
+        .player.hanged {
+            opacity: 0.3;
+            transform: scale(0.7);
+        }
+
+        .player.escaped {
+            opacity: 0.3;
+            transform: scale(0.8);
+        }
+
+        .player-name {
+            position: absolute;
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            white-space: nowrap;
+            border: 1px solid rgba(255,255,255,0.2);
+            pointer-events: none;
+        }
+
+        .player-status {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-size: 10px;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .status-captured { background: #e74c3c; }
+        .status-hanged { background: #e67e22; }
+
+        /* 矿石 */
+        .ore {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            z-index: 5;
+        }
+
+        .ore.collected {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        /* 木板 */
+        .board {
+            position: absolute;
+            width: 100px;
+            height: 20px;
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            z-index: 3;
+        }
+
+        .board.down {
+            transform: rotate(90deg);
+            width: 80px;
+            background: linear-gradient(135deg, #654321 0%, #8B4513 100%);
+        }
+
+        .board.broken {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        /* 笼子 */
+        .cage {
+            position: absolute;
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            border: 4px solid #7f8c8d;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            z-index: 2;
+        }
+
+        .cage-label {
+            font-size: 10px;
+            margin-top: 5px;
+        }
+
+        .cage.occupied {
+            border-color: #e74c3c;
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+        }
+
+        /* 逃生门 */
+        .exit-zone {
+            position: absolute;
+            width: 100px;
+            height: 120px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 0 30px rgba(56, 239, 125, 0.5);
+            border: 4px solid #2ecc71;
+            z-index: 1;
+        }
+
+        .exit-zone-label {
+            font-size: 12px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .exit-zone.hidden {
+            display: none;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            width: 320px;
+            background: #16213e;
+            padding: 20px;
+            overflow-y: auto;
+            border-left: 2px solid #667eea;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #ffd700;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 5px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.05);
+            margin-bottom: 6px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .stat-value {
+            color: #67e7d5;
+            font-weight: bold;
+        }
+
+        .player-list-item {
+            padding: 10px;
+            background: rgba(255,255,255,0.08);
+            margin-bottom: 8px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .player-list-item.you {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+        }
+
+        .role-badge {
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .role-badge.survivor { background: #667eea; }
+        .role-badge.hunter { background: #e74c3c; }
+
+        /* 控制面板 */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            border: 2px solid #667eea;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+        }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            grid-template-rows: repeat(2, 60px);
+            gap: 8px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn:nth-child(1) { grid-column: 2; }
+        .btn:nth-child(2) { grid-column: 1; grid-row: 2; }
+        .btn:nth-child(3) { grid-column: 2; grid-row: 2; }
+        .btn:nth-child(4) { grid-column: 3; grid-row: 2; }
+
+        /* 技能按钮 */
+        .skill-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .skill-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+            min-width: 120px;
+        }
+
+        .skill-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .skill-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .skill-btn.hunter { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+        .skill-btn.survivor { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
+
+        /* 提示消息 */
+        .toast {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.95);
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid #ffd700;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .toast.show { opacity: 1; }
+
+        /* 游戏结束 */
+        .game-over {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.95);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            border: 4px solid #ffd700;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            display: none;
+            z-index: 2000;
+        }
+
+        .game-over.show { display: block; }
+
+        .game-over-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .game-over-message {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .action-btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="info-item">🎮 <strong>萌宠大逃亡</strong></div>
+            <div class="info-item">🏠 房间: <strong id="roomId">--</strong></div>
+            <div class="info-item">⏱️ 时间: <strong id="timer">05:00</strong></div>
+            <div class="info-item">👥 玩家: <strong id="playerCount">0/5</strong></div>
+        </div>
+        <div>
+            <button class="action-btn" onclick="location.reload()" style="padding: 8px 20px; font-size: 14px;">重新开始</button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="game-container">
+        <!-- Game Area -->
+        <div class="game-area" id="gameArea">
+            <!-- 逃生门 -->
+            <div class="exit-zone hidden" id="exitZone">
+                🚪
+                <div class="exit-zone-label">逃生门</div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="section">
+                <div class="section-title">📊 游戏状态</div>
+                <div class="stat-item">
+                    <span>游戏状态</span>
+                    <span class="stat-value" id="gameState">等待中</span>
+                </div>
+                <div class="stat-item">
+                    <span>矿石收集</span>
+                    <span class="stat-value" id="oreCount">0/8</span>
+                </div>
+                <div class="stat-item">
+                    <span>逃脱人数</span>
+                    <span class="stat-value" id="escapedCount">0/3</span>
+                </div>
+                <div class="stat-item">
+                    <span>淘汰人数</span>
+                    <span class="stat-value" id="eliminatedCount">0/3</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">👥 在线玩家</div>
+                <div id="playerListSidebar"></div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">ℹ️ 游戏说明</div>
+                <div style="font-size: 12px; line-height: 1.8; opacity: 0.8;">
+                    <p><strong>逃生者🐱：</strong></p>
+                    <p>• 靠近矿石自动收集</p>
+                    <p>• 收集8个开启逃生门</p>
+                    <p>• 可推倒木板阻挡追捕者</p>
+                    <p>• 按"救人"解救队友</p>
+                    <br>
+                    <p><strong>追捕者🐺：</strong></p>
+                    <p>• 按"抓人"捕获逃生者</p>
+                    <p>• 按"挂人"将人挂笼子</p>
+                    <p>• 淘汰3人即胜利</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <div class="btn-grid">
+            <button class="btn" onclick="move(0, -40)">↑</button>
+            <button class="btn" onclick="move(-40, 0)">←</button>
+            <button class="btn" onclick="move(0, 40)">↓</button>
+            <button class="btn" onclick="move(40, 0)">→</button>
+        </div>
+        <div class="skill-buttons" id="skillButtons">
+            <!-- 技能按钮动态生成 -->
+        </div>
+    </div>
+
+    <!-- Game Over -->
+    <div class="game-over" id="gameOver">
+        <div class="game-over-title" id="gameOverTitle">🏆</div>
+        <div class="game-over-message" id="gameOverMessage"></div>
+        <button class="action-btn" onclick="location.reload()">重新开始</button>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="https://unpkg.com/colyseus.js@0.15.0/dist/colyseus.js"></script>
+    <script>
+        // === 全局变量 ===
+        let client, room, localSessionId, localCharacterType;
+        let playerElements = new Map();
+        let playerStates = new Map(); // 玩家状态（captured, hanged等）
+        let oreElements = new Map();
+        let boardElements = new Map();
+        let cageElements = new Map();
+        let aiPlayers = new Map();
+        let gameState = {
+            oreCollected: 0,
+            oresRequired: 8,
+            survivorsEscaped: 0,
+            survivorsEliminated: 0,
+            gameStatus: 'waiting',
+            timeRemaining: 300
+        };
+
+        // === 初始化 ===
+        async function init() {
+            try {
+                showToast('正在连接服务器...');
+                client = new Colyseus.Client('ws://localhost:2567');
+
+                const playerName = prompt('输入你的名字:', '玩家' + Math.floor(Math.random() * 100)) || '测试玩家';
+                const isHunter = !confirm('选择角色:\n确定 = 逃生者🐱\n取消 = 追捕者🐺');
+                localCharacterType = isHunter ? 'hunter' : 'survivor';
+
+                room = await client.create('game_room', { playerName, characterType: localCharacterType });
+                localSessionId = room.sessionId;
+                document.getElementById('roomId').textContent = room.id;
+
+                showToast('✅ 房间创建成功！', 'success');
+                console.log(`✅ 房间ID: ${room.id}`);
+
+                setupRoom();
+                spawnOres();
+                spawnBoards();
+                spawnCages();
+                createSkillButtons();
+
+                setTimeout(() => spawnAI(), 1500);
+                setTimeout(() => {
+                    gameState.gameStatus = 'playing';
+                    updateGameState();
+                    startTimer();
+                    showToast('🎮 游戏开始！', 'success');
+                }, 3000);
+
+            } catch (e) {
+                showToast('❌ 连接失败: ' + e.message, 'error');
+                alert('连接失败: ' + e.message);
+            }
+        }
+
+        // === 房间设置 ===
+        function setupRoom() {
+            room.state.players.onAdd((player, sessionId) => {
+                console.log(`👤 玩家加入: ${player.name}`);
+                createPlayer(sessionId, player);
+                playerStates.set(sessionId, { captured: false, hanged: false, escaped: false });
+                updatePlayerList();
+            });
+
+            room.state.players.onRemove((player, sessionId) => {
+                console.log(`👋 玩家离开: ${player.name}`);
+                removePlayer(sessionId);
+                playerStates.delete(sessionId);
+                updatePlayerList();
+            });
+
+            room.state.players.onAdd((player, sessionId) => {
+                player.onChange(() => {
+                    updatePlayer(sessionId, player);
+                });
+            });
+        }
+
+        // === 玩家管理 ===
+        function createPlayer(sessionId, player) {
+            const gameArea = document.getElementById('gameArea');
+            const isLocal = sessionId === localSessionId;
+            const isHunter = player.characterType === 'hunter';
+
+            let x = player.x || (200 + Math.random() * 600);
+            let y = player.y || (150 + Math.random() * 300);
+
+            const playerDiv = document.createElement('div');
+            playerDiv.className = `player ${isHunter ? 'hunter' : 'survivor'} ${isLocal ? 'local' : ''}`;
+            playerDiv.id = `player-${sessionId}`;
+            playerDiv.innerHTML = isHunter ? '🐺' : '🐱';
+            playerDiv.style.left = x + 'px';
+            playerDiv.style.top = y + 'px';
+
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'player-name';
+            nameDiv.textContent = player.name + (isLocal ? ' (你)' : '');
+            playerDiv.appendChild(nameDiv);
+
+            gameArea.appendChild(playerDiv);
+            playerElements.set(sessionId, playerDiv);
+        }
+
+        function updatePlayer(sessionId, player) {
+            const playerDiv = playerElements.get(sessionId);
+            if (playerDiv && player.x !== undefined && player.y !== undefined) {
+                playerDiv.style.left = player.x + 'px';
+                playerDiv.style.top = player.y + 'px';
+            }
+        }
+
+        function removePlayer(sessionId) {
+            const playerDiv = playerElements.get(sessionId);
+            if (playerDiv) {
+                playerDiv.remove();
+                playerElements.delete(sessionId);
+            }
+        }
+
+        // === 矿石系统 ===
+        function spawnOres() {
+            const gameArea = document.getElementById('gameArea');
+            const orePositions = [
+                {x: 150, y: 150}, {x: 400, y: 150}, {x: 650, y: 150}, {x: 900, y: 150},
+                {x: 150, y: 350}, {x: 400, y: 350}, {x: 650, y: 350}, {x: 900, y: 350}
+            ];
+
+            orePositions.forEach((pos, index) => {
+                const ore = document.createElement('div');
+                ore.className = 'ore';
+                ore.id = `ore-${index}`;
+                ore.innerHTML = '💎';
+                ore.style.left = pos.x + 'px';
+                ore.style.top = pos.y + 'px';
+                gameArea.appendChild(ore);
+                oreElements.set(index, ore);
+            });
+        }
+
+        // === 木板系统 ===
+        function spawnBoards() {
+            const gameArea = document.getElementById('gameArea');
+            const boardPositions = [
+                {x: 300, y: 250}, {x: 550, y: 250}, {x: 800, y: 250}
+            ];
+
+            boardPositions.forEach((pos, index) => {
+                const board = document.createElement('div');
+                board.className = 'board';
+                board.id = `board-${index}`;
+                board.textContent = '木板';
+                board.style.left = pos.x + 'px';
+                board.style.top = pos.y + 'px';
+                board.dataset.state = 'up';
+                gameArea.appendChild(board);
+                boardElements.set(index, board);
+            });
+        }
+
+        // === 笼子系统 ===
+        function spawnCages() {
+            const gameArea = document.getElementById('gameArea');
+            const cagePositions = [
+                {x: 100, y: 500}, {x: 400, y: 500}, {x: 700, y: 500}
+            ];
+
+            cagePositions.forEach((pos, index) => {
+                const cage = document.createElement('div');
+                cage.className = 'cage';
+                cage.id = `cage-${index}`;
+                cage.innerHTML = '🪝<div class="cage-label">空笼</div>';
+                cage.style.left = pos.x + 'px';
+                cage.style.top = pos.y + 'px';
+                cage.dataset.occupied = 'false';
+                cage.dataset.sessionId = '';
+                gameArea.appendChild(cage);
+                cageElements.set(index, cage);
+            });
+        }
+
+        // === 技能按钮 ===
+        function createSkillButtons() {
+            const skillButtons = document.getElementById('skillButtons');
+
+            if (localCharacterType === 'hunter') {
+                skillButtons.innerHTML = `
+                    <button class="skill-btn hunter" id="captureBtn" onclick="capturePlayer()">🎯 抓人</button>
+                    <button class="skill-btn hunter" id="hangBtn" onclick="hangPlayer()" disabled>🪝 挂人</button>
+                `;
+            } else {
+                skillButtons.innerHTML = `
+                    <button class="skill-btn survivor" id="pushBoardBtn" onclick="pushBoard()">🪵 推木板</button>
+                    <button class="skill-btn survivor" id="rescueBtn" onclick="rescuePlayer()">🆘 救人</button>
+                `;
+            }
+        }
+
+        // === 追捕者技能 ===
+        function capturePlayer() {
+            const localPlayer = playerElements.get(localSessionId);
+            if (!localPlayer) return;
+
+            const localX = parseInt(localPlayer.style.left);
+            const localY = parseInt(localPlayer.style.top);
+
+            // 查找附近的逃生者
+            for (const [sessionId, playerDiv] of playerElements.entries()) {
+                if (sessionId === localSessionId) continue;
+                const state = playerStates.get(sessionId);
+                if (state && (state.captured || state.hanged || state.escaped)) continue;
+
+                const targetX = parseInt(playerDiv.style.left);
+                const targetY = parseInt(playerDiv.style.top);
+                const distance = Math.sqrt((localX - targetX) ** 2 + (localY - targetY) ** 2);
+
+                if (distance < 80) { // 80px范围内
+                    // 抓住玩家
+                    state.captured = true;
+                    playerDiv.classList.add('captured');
+                    const statusDiv = document.createElement('div');
+                    statusDiv.className = 'player-status status-captured';
+                    statusDiv.textContent = '被抓';
+                    playerDiv.appendChild(statusDiv);
+
+                    showToast('🎯 你抓住了一个逃生者！');
+                    document.getElementById('hangBtn').disabled = false;
+                    return;
+                }
+            }
+
+            showToast('附近没有可抓的逃生者');
+        }
+
+        function hangPlayer() {
+            const localPlayer = playerElements.get(localSessionId);
+            if (!localPlayer) return;
+
+            const localX = parseInt(localPlayer.style.left);
+            const localY = parseInt(localPlayer.style.top);
+
+            // 查找附近的空笼子
+            for (const [cageId, cage] of cageElements.entries()) {
+                if (cage.dataset.occupied === 'true') continue;
+
+                const cageX = parseInt(cage.style.left);
+                const cageY = parseInt(cage.style.top);
+                const distance = Math.sqrt((localX - cageX) ** 2 + (localY - cageY) ** 2);
+
+                if (distance < 100) {
+                    // 查找被抓的玩家
+                    for (const [sessionId, state] of playerStates.entries()) {
+                        if (state.captured && !state.hanged) {
+                            const playerDiv = playerElements.get(sessionId);
+                            state.captured = false;
+                            state.hanged = true;
+
+                            playerDiv.classList.remove('captured');
+                            playerDiv.classList.add('hanged');
+                            playerDiv.querySelector('.player-status').textContent = '被挂起';
+                            playerDiv.querySelector('.player-status').className = 'player-status status-hanged';
+
+                            // 移动到笼子位置
+                            playerDiv.style.left = (cageX + 10) + 'px';
+                            playerDiv.style.top = (cageY + 20) + 'px';
+
+                            cage.dataset.occupied = 'true';
+                            cage.dataset.sessionId = sessionId;
+                            cage.classList.add('occupied');
+                            cage.innerHTML = '🪝<div class="cage-label">已占用</div>';
+
+                            showToast('🪝 你挂起了一个逃生者！');
+                            document.getElementById('hangBtn').disabled = true;
+
+                            // 30秒后淘汰
+                            setTimeout(() => {
+                                if (state.hanged) {
+                                    eliminatePlayer(sessionId);
+                                }
+                            }, 30000);
+
+                            return;
+                        }
+                    }
+                }
+            }
+
+            showToast('附近没有空笼子');
+        }
+
+        // === 逃生者技能 ===
+        function pushBoard() {
+            const localPlayer = playerElements.get(localSessionId);
+            if (!localPlayer) return;
+
+            const localX = parseInt(localPlayer.style.left);
+            const localY = parseInt(localPlayer.style.top);
+
+            for (const [boardId, board] of boardElements.entries()) {
+                if (board.dataset.state !== 'up') continue;
+
+                const boardX = parseInt(board.style.left);
+                const boardY = parseInt(board.style.top);
+                const distance = Math.sqrt((localX - boardX) ** 2 + (localY - boardY) ** 2);
+
+                if (distance < 60) {
+                    board.classList.add('down');
+                    board.dataset.state = 'down';
+                    showToast('🪵 你推倒了木板！');
+                    return;
+                }
+            }
+
+            showToast('附近没有可推的木板');
+        }
+
+        function rescuePlayer() {
+            const localPlayer = playerElements.get(localSessionId);
+            if (!localPlayer) return;
+
+            const localX = parseInt(localPlayer.style.left);
+            const localY = parseInt(localPlayer.style.top);
+
+            for (const [cageId, cage] of cageElements.entries()) {
+                if (cage.dataset.occupied !== 'true') continue;
+
+                const cageX = parseInt(cage.style.left);
+                const cageY = parseInt(cage.style.top);
+                const distance = Math.sqrt((localX - cageX) ** 2 + (localY - cageY) ** 2);
+
+                if (distance < 100) {
+                    const sessionId = cage.dataset.sessionId;
+                    const state = playerStates.get(sessionId);
+                    const playerDiv = playerElements.get(sessionId);
+
+                    if (state && playerDiv) {
+                        state.hanged = false;
+                        playerDiv.classList.remove('hanged');
+                        const statusDiv = playerDiv.querySelector('.player-status');
+                        if (statusDiv) statusDiv.remove();
+
+                        cage.dataset.occupied = 'false';
+                        cage.dataset.sessionId = '';
+                        cage.classList.remove('occupied');
+                        cage.innerHTML = '🪝<div class="cage-label">空笼</div>';
+
+                        showToast('🆘 你救出了队友！');
+                        return;
+                    }
+                }
+            }
+
+            showToast('附近没有被挂起的队友');
+        }
+
+        // === 淘汰系统 ===
+        function eliminatePlayer(sessionId) {
+            const state = playerStates.get(sessionId);
+            const playerDiv = playerElements.get(sessionId);
+
+            if (!state || !playerDiv) return;
+
+            state.hanged = false;
+            state.escaped = true; // 复用escaped样式显示淘汰效果
+
+            playerDiv.classList.remove('hanged');
+            playerDiv.classList.add('escaped');
+            const statusDiv = playerDiv.querySelector('.player-status');
+            if (statusDiv) statusDiv.remove();
+
+            gameState.survivorsEliminated++;
+            updateGameState();
+            showToast('💀 一名逃生者被淘汰！');
+            checkWinConditions();
+
+            // 清空笼子
+            for (const [cageId, cage] of cageElements.entries()) {
+                if (cage.dataset.sessionId === sessionId) {
+                    cage.dataset.occupied = 'false';
+                    cage.dataset.sessionId = '';
+                    cage.classList.remove('occupied');
+                    cage.innerHTML = '🪝<div class="cage-label">空笼</div>';
+                }
+            }
+        }
+
+        // === 自动收集矿石 ===
+        setInterval(() => {
+            if (gameState.gameStatus !== 'playing') return;
+            if (localCharacterType !== 'survivor') return;
+
+            const localPlayer = playerElements.get(localSessionId);
+            if (!localPlayer) return;
+
+            const localX = parseInt(localPlayer.style.left);
+            const localY = parseInt(localPlayer.style.top);
+
+            for (const [oreId, ore] of oreElements.entries()) {
+                if (ore.classList.contains('collected')) continue;
+
+                const oreX = parseInt(ore.style.left);
+                const oreY = parseInt(ore.style.top);
+                const distance = Math.sqrt((localX - oreX) ** 2 + (localY - oreY) ** 2);
+
+                if (distance < 60) {
+                    collectOre(oreId);
+                    break;
+                }
+            }
+        }, 500);
+
+        function collectOre(oreId) {
+            const ore = oreElements.get(oreId);
+            if (!ore || ore.classList.contains('collected')) return;
+
+            ore.classList.add('collected');
+            gameState.oreCollected++;
+            updateGameState();
+            showToast('💎 收集了矿石！');
+
+            if (gameState.oreCollected >= gameState.oresRequired) {
+                openExitZone();
+            }
+        }
+
+        // === 逃生门 ===
+        function openExitZone() {
+            const exitZone = document.getElementById('exitZone');
+            exitZone.classList.remove('hidden');
+            exitZone.style.left = '50%';
+            exitZone.style.top = '50%';
+            exitZone.style.transform = 'translate(-50%, -50%)';
+            showToast('🚪 逃生门已开启！', 'success');
+        }
+
+        // 自动逃脱检测
+        setInterval(() => {
+            if (gameState.gameStatus !== 'playing') return;
+            if (gameState.oreCollected < gameState.oresRequired) return;
+            if (localCharacterType !== 'survivor') return;
+
+            const localPlayer = playerElements.get(localSessionId);
+            const state = playerStates.get(localSessionId);
+            if (!localPlayer || !state) return;
+            if (state.escaped) return;
+
+            const exitZone = document.getElementById('exitZone');
+            if (exitZone.classList.contains('hidden')) return;
+
+            const localX = parseInt(localPlayer.style.left);
+            const localY = parseInt(localPlayer.style.top);
+            const exitX = parseInt(exitZone.style.left);
+            const exitY = parseInt(exitZone.style.top);
+            const distance = Math.sqrt((localX - exitX) ** 2 + (localY - exitY) ** 2);
+
+            if (distance < 100) {
+                state.escaped = true;
+                localPlayer.classList.add('escaped');
+                gameState.survivorsEscaped++;
+                updateGameState();
+                showToast('🎉 你成功逃脱了！', 'success');
+                checkWinConditions();
+            }
+        }, 500);
+
+        // === 移动 ===
+        function move(dx, dy) {
+            if (!room) return;
+
+            const playerDiv = playerElements.get(localSessionId);
+            if (!playerDiv) return;
+
+            let x = parseInt(playerDiv.style.left) || 500;
+            let y = parseInt(playerDiv.style.top) || 300;
+
+            x += dx;
+            y += dy;
+
+            const gameArea = document.getElementById('gameArea');
+            x = Math.max(30, Math.min(gameArea.clientWidth - 390, x));
+            y = Math.max(30, Math.min(gameArea.clientHeight - 90, y));
+
+            room.send("playerMove", {
+                x, y, z: 0,
+                rotationY: 0,
+                isMoving: true,
+                animationState: "run",
+                timestamp: Date.now()
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (!room) return;
+            switch(e.key) {
+                case 'ArrowUp': case 'w': case 'W': move(0, -40); break;
+                case 'ArrowDown': case 's': case 'S': move(0, 40); break;
+                case 'ArrowLeft': case 'a': case 'A': move(-40, 0); break;
+                case 'ArrowRight': case 'd': case 'D': move(40, 0); break;
+            }
+        });
+
+        // === UI更新 ===
+        function updateGameState() {
+            document.getElementById('gameState').textContent =
+                gameState.gameStatus === 'playing' ? '游戏中' : '等待中';
+            document.getElementById('oreCount').textContent =
+                `${gameState.oreCollected}/${gameState.oresRequired}`;
+            document.getElementById('escapedCount').textContent =
+                `${gameState.survivorsEscaped}/3`;
+            document.getElementById('eliminatedCount').textContent =
+                `${gameState.survivorsEliminated}/3`;
+        }
+
+        function updatePlayerList() {
+            const list = document.getElementById('playerListSidebar');
+            if (!room || !room.state) return;
+
+            const players = Array.from(room.state.players.entries());
+            list.innerHTML = '';
+
+            players.forEach(([sessionId, player]) => {
+                const li = document.createElement('div');
+                li.className = 'player-list-item' + (sessionId === localSessionId ? ' you' : '');
+
+                const icon = player.characterType === 'hunter' ? '🐺' : '🐱';
+                const roleBadge = `<span class="role-badge ${player.characterType}">${
+                    player.characterType === 'hunter' ? '追捕者' : '逃生者'
+                }</span>`;
+
+                li.innerHTML = `${icon} ${player.name} ${roleBadge}`;
+                list.appendChild(li);
+            });
+
+            document.getElementById('playerCount').textContent = `${players.length}/5`;
+        }
+
+        function startTimer() {
+            setInterval(() => {
+                if (gameState.gameStatus !== 'playing') return;
+
+                gameState.timeRemaining--;
+                if (gameState.timeRemaining <= 0) {
+                    gameState.timeRemaining = 0;
+                    endGame('timeout');
+                }
+
+                const minutes = Math.floor(gameState.timeRemaining / 60);
+                const seconds = gameState.timeRemaining % 60;
+                document.getElementById('timer').textContent =
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // === 胜负判定 ===
+        function checkWinConditions() {
+            if (gameState.survivorsEscaped >= 3) {
+                endGame('survivor_win');
+            } else if (gameState.survivorsEliminated >= 3) {
+                endGame('hunter_win');
+            }
+        }
+
+        function endGame(result) {
+            gameState.gameStatus = 'ended';
+
+            const gameOverPanel = document.getElementById('gameOver');
+            const title = document.getElementById('gameOverTitle');
+            const message = document.getElementById('gameOverMessage');
+
+            if (result === 'survivor_win') {
+                title.textContent = '🎉 逃生者胜利！';
+                message.textContent = `${gameState.survivorsEscaped}名逃生者成功逃脱！`;
+            } else if (result === 'hunter_win') {
+                title.textContent = '😈 追捕者胜利！';
+                message.textContent = `${gameState.survivorsEliminated}名逃生者被淘汰！`;
+            } else if (result === 'timeout') {
+                if (gameState.survivorsEscaped >= 2) {
+                    title.textContent = '⚖️ 平局！';
+                    message.textContent = `时间到！${gameState.survivorsEscaped}名逃生者逃脱。`;
+                } else {
+                    title.textContent = '😈 追捕者胜利！';
+                    message.textContent = '时间到！逃脱人数不足。';
+                }
+            }
+
+            gameOverPanel.classList.add('show');
+        }
+
+        // === 提示消息 ===
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // === AI机器人 ===
+        async function spawnAI() {
+            console.log('🤖 开始添加AI玩家...');
+
+            const aiNames = ['AI小明', 'AI小红', 'AI小刚', 'AI小美'];
+            const aiTypes = ['survivor', 'survivor', 'hunter', 'survivor'];
+
+            const currentPlayers = room.state.players.size;
+            const aiNeeded = Math.min(4, 5 - currentPlayers);
+
+            for (let i = 0; i < aiNeeded; i++) {
+                try {
+                    const aiRoom = await client.joinById(room.id, {
+                        playerName: aiNames[i],
+                        characterType: aiTypes[i]
+                    });
+
+                    aiPlayers.set(aiRoom.sessionId, aiRoom);
+                    console.log(`✅ AI加入成功: ${aiNames[i]}`);
+
+                    startAIBehavior(aiRoom, aiTypes[i]);
+
+                } catch (e) {
+                    console.log(`❌ AI加入失败: ${e.message}`);
+                }
+            }
+        }
+
+        function startAIBehavior(aiRoom, characterType) {
+            // AI随机移动
+            setInterval(() => {
+                if (gameState.gameStatus !== 'playing') return;
+
+                const x = 200 + Math.random() * 700;
+                const y = 150 + Math.random() * 350;
+
+                aiRoom.send("playerMove", {
+                    x, y, z: 0,
+                    rotationY: 0,
+                    isMoving: true,
+                    animationState: "run",
+                    timestamp: Date.now()
+                });
+            }, 2000 + Math.random() * 2000);
+
+            // 逃生者AI行为
+            if (characterType === 'survivor') {
+                // AI自动收集矿石
+                setInterval(() => {
+                    if (gameState.gameStatus !== 'playing') return;
+                    if (Math.random() > 0.7) {
+                        const uncollectedOres = Array.from(oreElements.entries())
+                            .filter(([id, ore]) => !ore.classList.contains('collected'));
+
+                        if (uncollectedOres.length > 0) {
+                            const randomOre = uncollectedOres[Math.floor(Math.random() * uncollectedOres.length)];
+                            collectOre(randomOre[0]);
+                        }
+                    }
+                }, 3000);
+
+                // AI自动逃脱
+                setInterval(() => {
+                    if (gameState.gameStatus !== 'playing') return;
+                    if (gameState.oreCollected >= gameState.oresRequired) {
+                        const state = playerStates.get(aiRoom.sessionId);
+                        if (state && !state.escaped && Math.random() > 0.8) {
+                            const aiPlayer = playerElements.get(aiRoom.sessionId);
+                            if (aiPlayer) {
+                                state.escaped = true;
+                                aiPlayer.classList.add('escaped');
+                                gameState.survivorsEscaped++;
+                                updateGameState();
+                                showToast(`🎉 ${aiRoom.state.players.get(aiRoom.sessionId).name} 逃脱了！`);
+                                checkWinConditions();
+                            }
+                        }
+                    }
+                }, 5000);
+            }
+        }
+
+        // === 启动 ===
+        window.onload = init;
+    </script>
+</body>
+</html>

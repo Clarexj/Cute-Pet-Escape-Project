@@ -1,0 +1,62 @@
+{
+  "version": "1.0.1",
+  "map": {
+    "prefabs": {
+      "time": 1759285445053.2007,
+      "uuid": "82274213-961d-4bb2-b5df-c92ca5e0be26"
+    },
+    "scenes": {
+      "time": 1759306777509.4917,
+      "uuid": "9a04a58f-4685-4700-96ce-2c5f733d726b"
+    },
+    "scripts": {
+      "time": 1759287773585.227,
+      "uuid": "44b7ca14-262a-44a1-977e-20eb88d9b176"
+    },
+    "scenes/GameScene-backup.scene": {
+      "time": 1759306777517.1475,
+      "uuid": "87e3ca8c-74fa-483f-89ce-600ca3dd8152"
+    },
+    "scenes/GameScene.scene": {
+      "time": 1759306777517.9802,
+      "uuid": "59940598-58cc-40aa-bff7-c60c6157b656"
+    },
+    "scripts/CameraFollow.ts": {
+      "time": 1759285650048.7253,
+      "uuid": "a0a58adb-f759-42ea-8310-6b444d5cca54"
+    },
+    "scripts/Joystick.ts": {
+      "time": 1759285650048.9827,
+      "uuid": "60489dbc-edbe-4adc-b0b9-c45cf5cc1d1f"
+    },
+    "scripts/PlayerController.ts": {
+      "time": 1759285650049.237,
+      "uuid": "b5d64775-98bf-4d55-8b5e-400f66336377"
+    },
+    "prefabs.meta": {
+      "time": 1759306777511.9934
+    },
+    "scenes.meta": {
+      "time": 1759306777512.1438
+    },
+    "scripts.meta": {
+      "time": 1759306777512.2468
+    },
+    "scripts/CameraFollow.ts.meta": {
+      "time": 1759306777516.0674
+    },
+    "scripts/Joystick.ts.meta": {
+      "time": 1759306777516.476
+    },
+    "scripts/PlayerController.ts.meta": {
+      "time": 1759306777516.755
+    },
+    "scenes/GameScene-backup.scene.meta": {
+      "time": 1759306777518.1545
+    },
+    "scenes/GameScene.scene.meta": {
+      "time": 1759306777519.0193
+    }
+  },
+  "missing": {}
+}

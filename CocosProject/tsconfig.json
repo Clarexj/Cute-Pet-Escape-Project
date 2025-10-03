@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "ES2015",
+    "strict": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": [
+      "ES2015",
+      "DOM"
+    ],
+    "types": [
+      "cocos-creator"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "temp",
+    "library"
+  ]
+}

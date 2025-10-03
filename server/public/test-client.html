@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可爱宠物大逃杀 - 联机测试客户端</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            background: #f7f7f7;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section h2::before {
+            content: "●";
+            margin-right: 10px;
+            font-size: 12px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 2px solid #bee5eb;
+        }
+
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffeeba;
+        }
+
+        #gameArea {
+            background: #2c3e50;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .player {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s ease-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .player.local {
+            background: #3498db;
+            border: 3px solid #2980b9;
+        }
+
+        .player.remote {
+            background: #e74c3c;
+            border: 3px solid #c0392b;
+        }
+
+        .player-name {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 10px;
+            white-space: nowrap;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 200px;
+            margin: 20px auto;
+        }
+
+        .controls button {
+            padding: 20px;
+            font-size: 18px;
+        }
+
+        .controls button:nth-child(2) { grid-column: 2; }
+        .controls button:nth-child(4) { grid-column: 1; }
+        .controls button:nth-child(5) { grid-column: 2; }
+        .controls button:nth-child(6) { grid-column: 3; }
+
+        #playerList {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        #playerList h3 {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #3498db;
+        }
+
+        #playerList ul {
+            list-style: none;
+        }
+
+        #playerList li {
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 5px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .log {
+            background: #1a1a1a;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+        }
+
+        .log-entry.error {
+            color: #f00;
+        }
+
+        .log-entry.success {
+            color: #0f0;
+        }
+
+        .log-entry.info {
+            color: #0ff;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .player.moving {
+            animation: pulse 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 可爱宠物大逃杀</h1>
+            <p>联机功能测试客户端 v1.0</p>
+        </div>
+
+        <div class="content">
+            <!-- 连接状态 -->
+            <div class="section">
+                <h2>服务器连接</h2>
+                <div id="connectionStatus" class="status info">
+                    未连接
+                </div>
+                <div class="input-group">
+                    <input type="text" id="serverUrl" value="ws://localhost:2567" placeholder="服务器地址">
+                    <button id="connectBtn" onclick="connect()">连接服务器</button>
+                </div>
+            </div>
+
+            <!-- 房间操作 -->
+            <div class="section">
+                <h2>房间管理</h2>
+                <div id="roomStatus" class="status info" style="display: none;">
+                    未在房间中
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="playerName" placeholder="输入你的名字" value="">
+                    <button onclick="generateRandomName()">随机名字</button>
+                </div>
+
+                <div class="input-group">
+                    <button id="createRoomBtn" onclick="createRoom()" disabled>创建房间</button>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="roomId" placeholder="输入房间ID">
+                    <button id="joinRoomBtn" onclick="joinRoom()" disabled>加入房间</button>
+                </div>
+
+                <div class="input-group">
+                    <button id="leaveRoomBtn" onclick="leaveRoom()" disabled style="background: #e74c3c;">离开房间</button>
+                </div>
+            </div>
+
+            <!-- 游戏区域 -->
+            <div class="section">
+                <h2>游戏画面</h2>
+                <div id="gameArea">
+                    <!-- 玩家将在这里显示 -->
+                </div>
+
+                <div class="controls">
+                    <button onclick="move(0, -10)">↑</button>
+                    <button onclick="move(-10, 0)">←</button>
+                    <button onclick="move(0, 10)">↓</button>
+                    <button onclick="move(10, 0)">→</button>
+                </div>
+
+                <div id="playerList">
+                    <h3>在线玩家 (0)</h3>
+                    <ul id="playersUl"></ul>
+                </div>
+            </div>
+
+            <!-- 日志 -->
+            <div class="section">
+                <h2>日志</h2>
+                <div id="log" class="log"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Colyseus 客户端库 -->
+    <script src="https://unpkg.com/colyseus.js@0.15.0/dist/colyseus.js"></script>
+
+    <script>
+        // 全局变量
+        let client = null;
+        let room = null;
+        let localSessionId = null;
+        let localPlayer = {
+            x: 200,
+            y: 150,
+            name: "玩家",
+            isMoving: false
+        };
+
+        // 玩家元素缓存
+        const playerElements = new Map();
+
+        // 随机名字生成
+        function generateRandomName() {
+            const adjectives = ['快乐', '勇敢', '聪明', '可爱', '神秘', '调皮', '温柔', '活泼'];
+            const nouns = ['小猫', '小狗', '小兔', '小熊', '小鸟', '小狐', '小鹿', '小猪'];
+            const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+            const noun = nouns[Math.floor(Math.random() * nouns.length)];
+            const num = Math.floor(Math.random() * 100);
+            const name = `${adj}的${noun}${num}`;
+            document.getElementById('playerName').value = name;
+            localPlayer.name = name;
+            return name;
+        }
+
+        // 日志函数
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            const time = new Date().toLocaleTimeString();
+            entry.textContent = `[${time}] ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        // 更新状态显示
+        function updateStatus(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = `status ${type}`;
+            element.style.display = 'block';
+        }
+
+        // 连接服务器
+        async function connect() {
+            const serverUrl = document.getElementById('serverUrl').value;
+
+            try {
+                updateStatus('connectionStatus', '正在连接...', 'warning');
+                log(`正在连接到服务器: ${serverUrl}`, 'info');
+
+                client = new Colyseus.Client(serverUrl);
+
+                updateStatus('connectionStatus', '✅ 已连接到服务器', 'success');
+                log('✅ 服务器连接成功！', 'success');
+
+                // 启用房间按钮
+                document.getElementById('createRoomBtn').disabled = false;
+                document.getElementById('joinRoomBtn').disabled = false;
+                document.getElementById('connectBtn').disabled = true;
+
+                // 生成随机名字
+                if (!document.getElementById('playerName').value) {
+                    generateRandomName();
+                }
+
+            } catch (error) {
+                updateStatus('connectionStatus', '❌ 连接失败: ' + error.message, 'error');
+                log(`❌ 连接失败: ${error.message}`, 'error');
+            }
+        }
+
+        // 创建房间
+        async function createRoom() {
+            if (!client) {
+                log('❌ 请先连接服务器', 'error');
+                return;
+            }
+
+            const playerName = document.getElementById('playerName').value || generateRandomName();
+
+            try {
+                updateStatus('roomStatus', '正在创建房间...', 'warning');
+                log('正在创建房间...', 'info');
+
+                room = await client.create("game_room", { playerName });
+
+                localSessionId = room.sessionId;
+                setupRoomHandlers();
+
+                updateStatus('roomStatus', `✅ 房间创建成功！房间ID: ${room.id}`, 'success');
+                log(`✅ 房间创建成功！`, 'success');
+                log(`📋 房间ID: ${room.id}`, 'success');
+                log(`👤 你的会话ID: ${localSessionId}`, 'info');
+
+                document.getElementById('roomId').value = room.id;
+                document.getElementById('createRoomBtn').disabled = true;
+                document.getElementById('joinRoomBtn').disabled = true;
+                document.getElementById('leaveRoomBtn').disabled = false;
+
+            } catch (error) {
+                updateStatus('roomStatus', '❌ 创建房间失败: ' + error.message, 'error');
+                log(`❌ 创建房间失败: ${error.message}`, 'error');
+            }
+        }
+
+        // 加入房间
+        async function joinRoom() {
+            if (!client) {
+                log('❌ 请先连接服务器', 'error');
+                return;
+            }
+
+            const roomId = document.getElementById('roomId').value;
+            const playerName = document.getElementById('playerName').value || generateRandomName();
+
+            if (!roomId) {
+                log('❌ 请输入房间ID', 'error');
+                return;
+            }
+
+            try {
+                updateStatus('roomStatus', '正在加入房间...', 'warning');
+                log(`正在加入房间: ${roomId}`, 'info');
+
+                room = await client.joinById(roomId, { playerName });
+
+                localSessionId = room.sessionId;
+                setupRoomHandlers();
+
+                updateStatus('roomStatus', `✅ 成功加入房间！房间ID: ${room.id}`, 'success');
+                log(`✅ 成功加入房间！`, 'success');
+                log(`👤 你的会话ID: ${localSessionId}`, 'info');
+
+                document.getElementById('createRoomBtn').disabled = true;
+                document.getElementById('joinRoomBtn').disabled = true;
+                document.getElementById('leaveRoomBtn').disabled = false;
+
+            } catch (error) {
+                updateStatus('roomStatus', '❌ 加入房间失败: ' + error.message, 'error');
+                log(`❌ 加入房间失败: ${error.message}`, 'error');
+            }
+        }
+
+        // 离开房间
+        function leaveRoom() {
+            if (room) {
+                room.leave();
+                log('👋 已离开房间', 'info');
+            }
+        }
+
+        // 设置房间事件处理
+        function setupRoomHandlers() {
+            // 玩家加入
+            room.state.players.onAdd((player, sessionId) => {
+                log(`👤 玩家加入: ${player.name} (${sessionId})`, 'success');
+                createPlayerElement(sessionId, player);
+                updatePlayerList();
+            });
+
+            // 玩家离开
+            room.state.players.onRemove((player, sessionId) => {
+                log(`👋 玩家离开: ${player.name} (${sessionId})`, 'info');
+                removePlayerElement(sessionId);
+                updatePlayerList();
+            });
+
+            // 玩家状态变化
+            room.state.players.onChange((player, sessionId) => {
+                updatePlayerElement(sessionId, player);
+            });
+
+            // 监听每个玩家的属性变化
+            room.state.players.onAdd((player, sessionId) => {
+                player.onChange(() => {
+                    updatePlayerElement(sessionId, player);
+                });
+            });
+
+            // 房间离开
+            room.onLeave((code) => {
+                log(`📤 离开房间 (code: ${code})`, 'warning');
+                updateStatus('roomStatus', '未在房间中', 'info');
+                document.getElementById('createRoomBtn').disabled = false;
+                document.getElementById('joinRoomBtn').disabled = false;
+                document.getElementById('leaveRoomBtn').disabled = true;
+
+                // 清空游戏区域
+                document.getElementById('gameArea').innerHTML = '';
+                playerElements.clear();
+                updatePlayerList();
+            });
+
+            // 错误处理
+            room.onError((code, message) => {
+                log(`❌ 房间错误 (${code}): ${message}`, 'error');
+            });
+        }
+
+        // 创建玩家元素
+        function createPlayerElement(sessionId, player) {
+            const gameArea = document.getElementById('gameArea');
+            const playerDiv = document.createElement('div');
+            playerDiv.className = sessionId === localSessionId ? 'player local' : 'player remote';
+            playerDiv.id = `player-${sessionId}`;
+            playerDiv.innerHTML = sessionId === localSessionId ? '🐱' : '🐶';
+            playerDiv.style.left = player.x + 'px';
+            playerDiv.style.top = player.y + 'px';
+
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'player-name';
+            nameDiv.textContent = player.name;
+            playerDiv.appendChild(nameDiv);
+
+            gameArea.appendChild(playerDiv);
+            playerElements.set(sessionId, playerDiv);
+        }
+
+        // 更新玩家元素
+        function updatePlayerElement(sessionId, player) {
+            const playerDiv = playerElements.get(sessionId);
+            if (playerDiv) {
+                playerDiv.style.left = player.x + 'px';
+                playerDiv.style.top = player.y + 'px';
+
+                if (player.isMoving) {
+                    playerDiv.classList.add('moving');
+                } else {
+                    playerDiv.classList.remove('moving');
+                }
+            }
+        }
+
+        // 移除玩家元素
+        function removePlayerElement(sessionId) {
+            const playerDiv = playerElements.get(sessionId);
+            if (playerDiv) {
+                playerDiv.remove();
+                playerElements.delete(sessionId);
+            }
+        }
+
+        // 更新玩家列表
+        function updatePlayerList() {
+            const playersUl = document.getElementById('playersUl');
+            const playerListDiv = document.getElementById('playerList');
+
+            if (!room || !room.state) {
+                playersUl.innerHTML = '';
+                playerListDiv.querySelector('h3').textContent = '在线玩家 (0)';
+                return;
+            }
+
+            const players = Array.from(room.state.players.entries());
+            playersUl.innerHTML = '';
+
+            players.forEach(([sessionId, player]) => {
+                const li = document.createElement('li');
+                const isLocal = sessionId === localSessionId;
+                li.textContent = `${isLocal ? '🐱' : '🐶'} ${player.name} ${isLocal ? '(你)' : ''}`;
+                playersUl.appendChild(li);
+            });
+
+            playerListDiv.querySelector('h3').textContent = `在线玩家 (${players.length})`;
+        }
+
+        // 移动函数
+        function move(dx, dy) {
+            if (!room) {
+                log('❌ 请先加入房间', 'error');
+                return;
+            }
+
+            localPlayer.x += dx;
+            localPlayer.y += dy;
+
+            // 限制边界
+            const gameArea = document.getElementById('gameArea');
+            const maxX = gameArea.clientWidth - 40;
+            const maxY = gameArea.clientHeight - 40;
+
+            localPlayer.x = Math.max(0, Math.min(maxX, localPlayer.x));
+            localPlayer.y = Math.max(0, Math.min(maxY, localPlayer.y));
+
+            // 发送位置到服务器
+            room.send("playerMove", {
+                x: localPlayer.x,
+                y: localPlayer.y,
+                z: 0,
+                rotationY: dx > 0 ? 90 : dx < 0 ? -90 : 0,
+                isMoving: true,
+                animationState: "run",
+                timestamp: Date.now()
+            });
+
+            // 短暂显示移动状态
+            setTimeout(() => {
+                room.send("playerMove", {
+                    x: localPlayer.x,
+                    y: localPlayer.y,
+                    z: 0,
+                    rotationY: 0,
+                    isMoving: false,
+                    animationState: "idle",
+                    timestamp: Date.now()
+                });
+            }, 200);
+
+            log(`📍 移动到: (${localPlayer.x.toFixed(0)}, ${localPlayer.y.toFixed(0)})`, 'info');
+        }
+
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            if (!room) return;
+
+            switch(e.key) {
+                case 'ArrowUp':
+                case 'w':
+                case 'W':
+                    move(0, -10);
+                    e.preventDefault();
+                    break;
+                case 'ArrowDown':
+                case 's':
+                case 'S':
+                    move(0, 10);
+                    e.preventDefault();
+                    break;
+                case 'ArrowLeft':
+                case 'a':
+                case 'A':
+                    move(-10, 0);
+                    e.preventDefault();
+                    break;
+                case 'ArrowRight':
+                case 'd':
+                case 'D':
+                    move(10, 0);
+                    e.preventDefault();
+                    break;
+            }
+        });
+
+        // 页面加载完成
+        window.onload = function() {
+            log('✅ 测试客户端已加载', 'success');
+            log('💡 请先点击"连接服务器"按钮', 'info');
+        };
+    </script>
+</body>
+</html>

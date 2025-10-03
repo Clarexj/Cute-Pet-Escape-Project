@@ -1,0 +1,16 @@
+{
+  "name": "cute-pet-escape",
+  "version": "3.8.7",
+  "description": "萌宠大逃亡 - 1v4非对称对抗游戏",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Clare",
+  "license": "MIT",
+  "dependencies": {},
+  "creator": {
+    "version": "3.8.7"
+  },
+  "uuid": "9de7f3bc-439f-4946-a7d6-d4f14e336c49"
+}

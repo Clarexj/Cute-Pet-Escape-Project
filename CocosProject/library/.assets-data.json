@@ -1,0 +1,54 @@
+{
+  "59940598-58cc-40aa-bff7-c60c6157b656": {
+    "url": "db://assets/scenes/GameScene.scene",
+    "value": {
+      "depends": [
+        "59940598-58cc-40aa-bff7-c60c6157b656",
+        "1263d74c-8167-4928-91a6-4e2672411f47@77d0e",
+        "1263d74c-8167-4928-91a6-4e2672411f47@2e76e"
+      ],
+      "dependScripts": []
+    },
+    "versionCode": 1
+  },
+  "87e3ca8c-74fa-483f-89ce-600ca3dd8152": {
+    "url": "db://assets/scenes/GameScene-backup.scene",
+    "value": {
+      "depends": [
+        "87e3ca8c-74fa-483f-89ce-600ca3dd8152"
+      ],
+      "dependScripts": []
+    },
+    "versionCode": 1
+  },
+  "82274213-961d-4bb2-b5df-c92ca5e0be26": {
+    "url": "db://assets/prefabs",
+    "value": {},
+    "versionCode": 1
+  },
+  "9a04a58f-4685-4700-96ce-2c5f733d726b": {
+    "url": "db://assets/scenes",
+    "value": {},
+    "versionCode": 1
+  },
+  "44b7ca14-262a-44a1-977e-20eb88d9b176": {
+    "url": "db://assets/scripts",
+    "value": {},
+    "versionCode": 1
+  },
+  "a0a58adb-f759-42ea-8310-6b444d5cca54": {
+    "url": "db://assets/scripts/CameraFollow.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "60489dbc-edbe-4adc-b0b9-c45cf5cc1d1f": {
+    "url": "db://assets/scripts/Joystick.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "b5d64775-98bf-4d55-8b5e-400f66336377": {
+    "url": "db://assets/scripts/PlayerController.ts",
+    "value": {},
+    "versionCode": 1
+  }
+}

@@ -1,0 +1,15 @@
+{
+    "version": "1.0.1",
+    "data": {
+        "paths": [
+            "prefabs",
+            "scenes",
+            "scripts",
+            "scenes/GameScene-backup.scene",
+            "scenes/GameScene.scene",
+            "scripts/CameraFollow.ts",
+            "scripts/Joystick.ts",
+            "scripts/PlayerController.ts"
+        ]
+    }
+}

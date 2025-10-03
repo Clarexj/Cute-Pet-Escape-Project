@@ -1,0 +1,12 @@
+{
+  "version": "3.8.0",
+  "name": "Cute-Pet-Escape",
+  "id": "cute-pet-escape-game",
+  "orientation": "landscape",
+  "designResolution": {
+    "width": 1280,
+    "height": 720
+  },
+  "fitHeight": true,
+  "fitWidth": true
+}

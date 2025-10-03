@@ -1,0 +1,47 @@
+10-1-2025 16:19:12 - log: Load engine in /Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/resources/3d/engine
+10-1-2025 16:19:12 - log: Register native engine in /Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/resources/3d/engine/native
+10-1-2025 16:19:13 - log: Request namespace: device-list
+10-1-2025 16:19:38 - log: [Scene] meshopt wasm decoder initialized
+10-1-2025 16:19:38 - log: [Scene] [box2d]:box2d wasm lib loaded.
+10-1-2025 16:19:38 - log: [Scene] [bullet]:bullet wasm lib loaded.
+10-1-2025 16:19:38 - log: [Scene] [PHYSICS]: using builtin.
+10-1-2025 16:19:38 - log: [Scene] Cocos Creator v3.8.7
+10-1-2025 16:19:39 - warn: [Scene] 'systemEvent' is deprecated since v3.4.0, please use 'input' instead.Error: [Scene] 'systemEvent' is deprecated since v3.4.0, please use 'input' instead.
+    at console.warn (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@sentry/core/src/utils-hoist/instrument/console.ts:40:14)
+    at warn (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/resources/3d/engine/bin/.cache/dev/editor/bundled/index.js:161146:12)
+    at warnID (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/resources/3d/engine/bin/.cache/dev/editor/bundled/index.js:161334:5)
+    at _checkObsoleteByName (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/resources/3d/engine/bin/.cache/dev/editor/bundled/index.js:174461:7)
+    at __checkObsolete__ (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/resources/3d/engine/bin/.cache/dev/editor/bundled/index.js:174480:7)
+    at Object.execute (file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/temp/programming/packer-driver/targets/editor/chunks/be/be579b4f87643eeacd452c0698dd79b17a65da5f.js:30:7)
+    at doExec (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@editor/lib-programming/static/executor/systemjs-bridge/out/index.js:517:30)
+    at postOrderExec (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@editor/lib-programming/static/executor/systemjs-bridge/out/index.js:508:21)
+    at /Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@editor/lib-programming/static/executor/systemjs-bridge/out/index.js:440:12
+    at file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/temp/programming/packer-driver/targets/editor/chunks/6d/6d8fd2b0177941b032ddc0733af48a561fb60657.js:13:13
+    at Object.execute (file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/temp/programming/packer-driver/targets/editor/chunks/6d/6d8fd2b0177941b032ddc0733af48a561fb60657.js:8:7)
+    at Executor._importPrerequisiteModules (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@editor/lib-programming/src/executor/index.ts:358:13)
+    at Executor.reload (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@editor/lib-programming/src/executor/index.ts:235:13)
+    at /Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/scripts.ccc:1:1893
+    at GlobalEnv.processQueue (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/scripts.ccc:1:2290)
+    at GlobalEnv.record (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/scripts.ccc:1:2061)
+    at ScriptManager.init (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/scripts.ccc:1:4024)
+10-1-2025 16:19:39 - warn: [Scene] 'SystemEvent' is deprecated since v3.4.0, please use 'Input' instead.Error: [Scene] 'SystemEvent' is deprecated since v3.4.0, please use 'Input' instead.
+    at console.warn (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@sentry/core/src/utils-hoist/instrument/console.ts:40:14)
+    at warn (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/resources/3d/engine/bin/.cache/dev/editor/bundled/index.js:161146:12)
+    at warnID (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/resources/3d/engine/bin/.cache/dev/editor/bundled/index.js:161334:5)
+    at _checkObsoleteByName (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/resources/3d/engine/bin/.cache/dev/editor/bundled/index.js:174461:7)
+    at __checkObsolete__ (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/resources/3d/engine/bin/.cache/dev/editor/bundled/index.js:174480:7)
+    at Object.execute (file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/temp/programming/packer-driver/targets/editor/chunks/be/be579b4f87643eeacd452c0698dd79b17a65da5f.js:30:7)
+    at doExec (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@editor/lib-programming/static/executor/systemjs-bridge/out/index.js:517:30)
+    at postOrderExec (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@editor/lib-programming/static/executor/systemjs-bridge/out/index.js:508:21)
+    at /Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@editor/lib-programming/static/executor/systemjs-bridge/out/index.js:440:12
+    at file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/temp/programming/packer-driver/targets/editor/chunks/6d/6d8fd2b0177941b032ddc0733af48a561fb60657.js:13:13
+    at Object.execute (file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/temp/programming/packer-driver/targets/editor/chunks/6d/6d8fd2b0177941b032ddc0733af48a561fb60657.js:8:7)
+    at Executor._importPrerequisiteModules (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@editor/lib-programming/src/executor/index.ts:358:13)
+    at Executor.reload (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/node_modules/@editor/lib-programming/src/executor/index.ts:235:13)
+    at /Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/scripts.ccc:1:1893
+    at GlobalEnv.processQueue (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/scripts.ccc:1:2290)
+    at GlobalEnv.record (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/scripts.ccc:1:2061)
+    at ScriptManager.init (/Applications/Cocos/Creator/3.8.7/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/scripts.ccc:1:4024)
+10-1-2025 16:19:39 - log: [Scene] Using custom pipeline: Builtin
+10-1-2025 16:19:39 - log: [Scene] [PHYSICS]: switch from builtin to bullet.
+10-1-2025 16:19:39 - log: [Scene] [PHYSICS2D]: switch from builtin to box2d.
