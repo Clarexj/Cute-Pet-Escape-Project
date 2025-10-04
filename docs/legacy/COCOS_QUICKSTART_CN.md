@@ -1,5 +1,7 @@
 # 🚀 Cocos Creator 项目快速启动指南
 
+> **状态：Legacy** — 仅在需要重新搭建官方 Cocos Creator 编辑器环境时参考。
+
 ## 第一步：安装 Cocos Creator
 
 ### 1. 下载 Cocos Creator 3.8.x
