@@ -2,14 +2,42 @@
     "version": "1.0.1",
     "data": {
         "paths": [
+            "libs",
             "prefabs",
             "scenes",
             "scripts",
+            "scripts/network",
+            "scripts/ui",
+            "libs/colyseus.js",
             "scenes/GameScene-backup.scene",
             "scenes/GameScene.scene",
+            "scripts/Board.ts",
+            "scripts/Cage.ts",
+            "scripts/CameraController.ts",
             "scripts/CameraFollow.ts",
+            "scripts/CharacterAnimationController.ts",
+            "scripts/CharacterState.ts",
+            "scripts/ExitZone.ts",
+            "scripts/GameManager.ts",
+            "scripts/GameUI.ts",
+            "scripts/HangTimerUI.ts",
+            "scripts/Hunter.ts",
+            "scripts/HunterController.ts",
+            "scripts/HunterUI.ts",
+            "scripts/Interactable.ts",
+            "scripts/InteractionUI.ts",
             "scripts/Joystick.ts",
-            "scripts/PlayerController.ts"
+            "scripts/Ore.ts",
+            "scripts/PlayerController.ts",
+            "scripts/TeamStatusUI.ts",
+            "scripts/UIManager.ts",
+            "scripts/network/NetworkGameManager.ts",
+            "scripts/network/NetworkManager.ts",
+            "scripts/network/PlayerSyncController.ts",
+            "scripts/network/RemotePlayerController.ts",
+            "scripts/network/RemotePlayerManager.ts",
+            "scripts/ui/LobbyUI.ts",
+            "scripts/ui/RoomUI.ts"
         ]
     }
 }

@@ -50,5 +50,145 @@
     "url": "db://assets/scripts/PlayerController.ts",
     "value": {},
     "versionCode": 1
+  },
+  "1ac7c71b-1d2f-437d-af37-32c3c8cfc3d0": {
+    "url": "db://assets/libs",
+    "value": {},
+    "versionCode": 1
+  },
+  "31fda820-467b-4092-9bfe-f51814697925": {
+    "url": "db://assets/scripts/network",
+    "value": {},
+    "versionCode": 1
+  },
+  "f3b337cf-fa05-41e9-95f1-1966340ebaa5": {
+    "url": "db://assets/scripts/ui",
+    "value": {},
+    "versionCode": 1
+  },
+  "b2935e1f-2d02-46f5-a8c8-c100338e110e": {
+    "url": "db://assets/libs/colyseus.js",
+    "value": {},
+    "versionCode": 1
+  },
+  "0b62dfac-ccbb-4f54-b438-e2338e66a3d3": {
+    "url": "db://assets/scripts/Board.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "f2640087-011b-4883-b91d-c1629a0122c8": {
+    "url": "db://assets/scripts/Cage.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "72eb9ea0-54d0-49ca-b509-de0755456d24": {
+    "url": "db://assets/scripts/CameraController.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "809540c7-d92f-4838-998f-5ea0c3da4006": {
+    "url": "db://assets/scripts/CharacterAnimationController.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "f08c8746-7cff-44f8-92a0-8a8697acb29a": {
+    "url": "db://assets/scripts/CharacterState.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "12ba98f3-c645-4568-8260-9ff892bba71e": {
+    "url": "db://assets/scripts/ExitZone.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "1f21c50b-7fbb-4927-9530-6e02e753d2e1": {
+    "url": "db://assets/scripts/GameManager.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "72d717e2-49bd-4621-96fa-2eaefaf8392f": {
+    "url": "db://assets/scripts/GameUI.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "eec4101c-c17b-4b25-93f0-e593657f68bd": {
+    "url": "db://assets/scripts/HangTimerUI.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "79566a70-94b4-4763-942c-8f7859b609bb": {
+    "url": "db://assets/scripts/Hunter.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "7cd0992f-c733-40f7-b907-25ddb1f7ebf7": {
+    "url": "db://assets/scripts/HunterController.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "5fc2eb4f-331f-45de-929b-96b4df41bf1a": {
+    "url": "db://assets/scripts/HunterUI.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "ce36c3de-75f6-44b5-ba02-05eeaf890e8e": {
+    "url": "db://assets/scripts/Interactable.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "1ceea84f-a3a8-4b4f-977b-548f50955f4e": {
+    "url": "db://assets/scripts/InteractionUI.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "ce21e676-2c89-42a1-81b5-93afcea9427d": {
+    "url": "db://assets/scripts/Ore.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "75663a9b-815d-4d0e-8bc9-f9084467b28b": {
+    "url": "db://assets/scripts/TeamStatusUI.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "789cbcf1-7840-4b51-adb5-f07ae1b03675": {
+    "url": "db://assets/scripts/UIManager.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "a7b60e84-bdd7-47e6-8c7c-bc745b616c56": {
+    "url": "db://assets/scripts/network/NetworkGameManager.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "f08f65f8-a35f-4f05-b47d-e7680becb530": {
+    "url": "db://assets/scripts/network/NetworkManager.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "383a47cd-0593-4936-9126-89aca058397f": {
+    "url": "db://assets/scripts/network/PlayerSyncController.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "f65bb099-3c3b-400a-b458-41fe69f9caaa": {
+    "url": "db://assets/scripts/network/RemotePlayerController.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "c90a674c-613e-412e-ba4c-fd139b49e0b4": {
+    "url": "db://assets/scripts/network/RemotePlayerManager.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "92152727-65f8-491a-bd14-ec13442d2e53": {
+    "url": "db://assets/scripts/ui/LobbyUI.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "0992d432-0a62-4acb-911a-c9f69be0c2a5": {
+    "url": "db://assets/scripts/ui/RoomUI.ts",
+    "value": {},
+    "versionCode": 1
   }
 }

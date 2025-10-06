@@ -1,7 +1,7 @@
 {
   "modules": {
     "cce:/internal/x/cc": {
-      "mTimestamp": 10498.301375,
+      "mTimestamp": 10050.440834,
       "chunkId": "93ba276ea7b26ffcdc433fab14afc1ed6f05647b",
       "imports": [
         {
@@ -997,7 +997,7 @@
       ]
     },
     "cce:/internal/x/prerequisite-imports": {
-      "mTimestamp": 25327.63625,
+      "mTimestamp": 11762.679875,
       "chunkId": "6d8fd2b0177941b032ddc0733af48a561fb60657",
       "imports": [
         {
@@ -1085,7 +1085,7 @@
           }
         },
         {
-          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CameraFollow.ts",
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/libs/colyseus.js",
           "resolved": "__unresolved_6",
           "loc": {
             "start": {
@@ -1094,35 +1094,385 @@
             },
             "end": {
               "line": 5,
-              "column": 1223
+              "column": 1216
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Board.ts",
+          "resolved": "__unresolved_7",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 1232
+            },
+            "end": {
+              "line": 5,
+              "column": 1374
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Cage.ts",
+          "resolved": "__unresolved_8",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 1390
+            },
+            "end": {
+              "line": 5,
+              "column": 1531
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CameraController.ts",
+          "resolved": "__unresolved_9",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 1547
+            },
+            "end": {
+              "line": 5,
+              "column": 1700
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CameraFollow.ts",
+          "resolved": "__unresolved_10",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 1716
+            },
+            "end": {
+              "line": 5,
+              "column": 1865
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterAnimationController.ts",
+          "resolved": "__unresolved_11",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 1881
+            },
+            "end": {
+              "line": 5,
+              "column": 2046
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts",
+          "resolved": "__unresolved_12",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 2062
+            },
+            "end": {
+              "line": 5,
+              "column": 2213
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/ExitZone.ts",
+          "resolved": "__unresolved_13",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 2229
+            },
+            "end": {
+              "line": 5,
+              "column": 2374
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/GameManager.ts",
+          "resolved": "__unresolved_14",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 2390
+            },
+            "end": {
+              "line": 5,
+              "column": 2538
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/GameUI.ts",
+          "resolved": "__unresolved_15",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 2554
+            },
+            "end": {
+              "line": 5,
+              "column": 2697
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/HangTimerUI.ts",
+          "resolved": "__unresolved_16",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 2713
+            },
+            "end": {
+              "line": 5,
+              "column": 2861
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Hunter.ts",
+          "resolved": "__unresolved_17",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 2877
+            },
+            "end": {
+              "line": 5,
+              "column": 3020
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/HunterController.ts",
+          "resolved": "__unresolved_18",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 3036
+            },
+            "end": {
+              "line": 5,
+              "column": 3189
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/HunterUI.ts",
+          "resolved": "__unresolved_19",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 3205
+            },
+            "end": {
+              "line": 5,
+              "column": 3350
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Interactable.ts",
+          "resolved": "__unresolved_20",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 3366
+            },
+            "end": {
+              "line": 5,
+              "column": 3515
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/InteractionUI.ts",
+          "resolved": "__unresolved_21",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 3531
+            },
+            "end": {
+              "line": 5,
+              "column": 3681
             }
           }
         },
         {
           "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Joystick.ts",
-          "resolved": "__unresolved_7",
+          "resolved": "__unresolved_22",
           "loc": {
             "start": {
               "line": 5,
-              "column": 1239
+              "column": 3697
             },
             "end": {
               "line": 5,
-              "column": 1384
+              "column": 3842
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Ore.ts",
+          "resolved": "__unresolved_23",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 3858
+            },
+            "end": {
+              "line": 5,
+              "column": 3998
             }
           }
         },
         {
           "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/PlayerController.ts",
-          "resolved": "__unresolved_8",
+          "resolved": "__unresolved_24",
           "loc": {
             "start": {
               "line": 5,
-              "column": 1400
+              "column": 4014
             },
             "end": {
               "line": 5,
-              "column": 1553
+              "column": 4167
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/TeamStatusUI.ts",
+          "resolved": "__unresolved_25",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 4183
+            },
+            "end": {
+              "line": 5,
+              "column": 4332
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/UIManager.ts",
+          "resolved": "__unresolved_26",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 4348
+            },
+            "end": {
+              "line": 5,
+              "column": 4494
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/NetworkGameManager.ts",
+          "resolved": "__unresolved_27",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 4510
+            },
+            "end": {
+              "line": 5,
+              "column": 4673
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/NetworkManager.ts",
+          "resolved": "__unresolved_28",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 4689
+            },
+            "end": {
+              "line": 5,
+              "column": 4848
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/PlayerSyncController.ts",
+          "resolved": "__unresolved_29",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 4864
+            },
+            "end": {
+              "line": 5,
+              "column": 5029
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/RemotePlayerController.ts",
+          "resolved": "__unresolved_30",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 5045
+            },
+            "end": {
+              "line": 5,
+              "column": 5212
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/RemotePlayerManager.ts",
+          "resolved": "__unresolved_31",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 5228
+            },
+            "end": {
+              "line": 5,
+              "column": 5392
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/ui/LobbyUI.ts",
+          "resolved": "__unresolved_32",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 5408
+            },
+            "end": {
+              "line": 5,
+              "column": 5555
+            }
+          }
+        },
+        {
+          "value": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/ui/RoomUI.ts",
+          "resolved": "__unresolved_33",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 5571
+            },
+            "end": {
+              "line": 5,
+              "column": 5717
             }
           }
         }
@@ -1174,7 +1524,112 @@
         {
           "resolved": {
             "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/libs/colyseus.mjs?cjs=&original=.js"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Board.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Cage.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CameraController.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
             "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CameraFollow.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterAnimationController.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/ExitZone.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/GameManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/GameUI.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/HangTimerUI.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Hunter.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/HunterController.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/HunterUI.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Interactable.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/InteractionUI.ts"
           },
           "messages": []
         },
@@ -1188,7 +1643,77 @@
         {
           "resolved": {
             "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Ore.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
             "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/PlayerController.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/TeamStatusUI.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/UIManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/NetworkGameManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/NetworkManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/PlayerSyncController.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/RemotePlayerController.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/RemotePlayerManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/ui/LobbyUI.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/ui/RoomUI.ts"
           },
           "messages": []
         }
@@ -1758,7 +2283,7 @@
     },
     "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CameraFollow.ts": {
       "mTimestamp": {
-        "mtime": 1759285650048.7253,
+        "mtime": 1759322153398.1067,
         "uuid": "a0a58adb-f759-42ea-8310-6b444d5cca54"
       },
       "chunkId": "5987bc71b45abade4dc40f120a886a7a3ea106eb",
@@ -1810,7 +2335,7 @@
     },
     "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Joystick.ts": {
       "mTimestamp": {
-        "mtime": 1759285650048.9827,
+        "mtime": 1759320468494.7634,
         "uuid": "60489dbc-edbe-4adc-b0b9-c45cf5cc1d1f"
       },
       "chunkId": "be579b4f87643eeacd452c0698dd79b17a65da5f",
@@ -1825,12 +2350,12 @@
           "value": "cc",
           "loc": {
             "start": {
-              "line": 4,
-              "column": 107
+              "line": 5,
+              "column": 81
             },
             "end": {
-              "line": 4,
-              "column": 111
+              "line": 5,
+              "column": 85
             }
           }
         }
@@ -1862,7 +2387,7 @@
     },
     "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/PlayerController.ts": {
       "mTimestamp": {
-        "mtime": 1759285650049.237,
+        "mtime": 1759389115181.9058,
         "uuid": "b5d64775-98bf-4d55-8b5e-400f66336377"
       },
       "chunkId": "54ef71038c0524b408945e0b96e32b4f05d45ded",
@@ -1881,12 +2406,12 @@
           "value": "cc",
           "loc": {
             "start": {
-              "line": 4,
-              "column": 56
+              "line": 5,
+              "column": 87
             },
             "end": {
-              "line": 4,
-              "column": 60
+              "line": 5,
+              "column": 91
             }
           }
         },
@@ -1895,12 +2420,54 @@
           "resolved": "__unresolved_1",
           "loc": {
             "start": {
-              "line": 5,
+              "line": 6,
               "column": 25
             },
             "end": {
-              "line": 5,
+              "line": 6,
               "column": 37
+            }
+          }
+        },
+        {
+          "value": "./Interactable",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 29
+            },
+            "end": {
+              "line": 7,
+              "column": 45
+            }
+          }
+        },
+        {
+          "value": "./CharacterState",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 51
+            },
+            "end": {
+              "line": 8,
+              "column": 69
+            }
+          }
+        },
+        {
+          "value": "./CharacterAnimationController",
+          "resolved": "__unresolved_4",
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 45
+            },
+            "end": {
+              "line": 9,
+              "column": 77
             }
           }
         }
@@ -1941,12 +2508,2222 @@
             "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Joystick.ts"
           },
           "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Interactable.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterAnimationController.ts"
+          },
+          "messages": []
         }
       ]
     },
     "cce:/internal/code-quality/cr.mjs": {
-      "mTimestamp": 1759306753127,
+      "mTimestamp": 1759557227075,
       "chunkId": "6a5019a719a9014c047e67aa1cf34453ab8392ce",
+      "imports": [],
+      "type": "esm",
+      "resolutions": []
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/libs/colyseus.mjs?cjs=&original=.js": {
+      "mTimestamp": 1759453956644.2603,
+      "chunkId": "78ea80312b5b186620ae678cd8e48e8b260494f6",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "./colyseus.js",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 36
+            },
+            "end": {
+              "line": 2,
+              "column": 51
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/ml/cjs-loader.mjs",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 19
+            },
+            "end": {
+              "line": 3,
+              "column": 52
+            }
+          }
+        },
+        {
+          "value": "./colyseus.js",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 14
+            },
+            "end": {
+              "line": 8,
+              "column": 29
+            }
+          }
+        },
+        {
+          "value": "./colyseus.js",
+          "resolved": "__unresolved_4",
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 29
+            },
+            "end": {
+              "line": 9,
+              "column": 44
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/libs/colyseus.js"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/ml/cjs-loader.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/libs/colyseus.js"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/libs/colyseus.js"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Board.ts": {
+      "mTimestamp": {
+        "mtime": 1759314821570.5017,
+        "uuid": "0b62dfac-ccbb-4f54-b438-e2338e66a3d3"
+      },
+      "chunkId": "27f4a33f0f44ce272c5ae9bebc871818924a158c",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 63
+            },
+            "end": {
+              "line": 4,
+              "column": 67
+            }
+          }
+        },
+        {
+          "value": "./Interactable",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 29
+            },
+            "end": {
+              "line": 5,
+              "column": 45
+            }
+          }
+        },
+        {
+          "value": "./PlayerController",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 33
+            },
+            "end": {
+              "line": 6,
+              "column": 53
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Interactable.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/PlayerController.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Cage.ts": {
+      "mTimestamp": {
+        "mtime": 1759316341311.017,
+        "uuid": "f2640087-011b-4883-b91d-c1629a0122c8"
+      },
+      "chunkId": "5dbbe2355303273f8641a8ce905cb18a8a987adb",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 44
+            },
+            "end": {
+              "line": 5,
+              "column": 48
+            }
+          }
+        },
+        {
+          "value": "./CharacterState",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 31
+            },
+            "end": {
+              "line": 6,
+              "column": 49
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CameraController.ts": {
+      "mTimestamp": {
+        "mtime": 1759322146186.7437,
+        "uuid": "72eb9ea0-54d0-49ca-b509-de0755456d24"
+      },
+      "chunkId": "36addd3a3455cc4be2421d47e7e5884b707bbdba",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 83
+            },
+            "end": {
+              "line": 4,
+              "column": 87
+            }
+          }
+        },
+        {
+          "value": "./CameraFollow",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 29
+            },
+            "end": {
+              "line": 5,
+              "column": 45
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CameraFollow.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterAnimationController.ts": {
+      "mTimestamp": {
+        "mtime": 1759389133475.7393,
+        "uuid": "809540c7-d92f-4838-998f-5ea0c3da4006"
+      },
+      "chunkId": "54ad172e6395392cba3653ecb2e306ccaa9b3fed",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 79
+            },
+            "end": {
+              "line": 5,
+              "column": 83
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts": {
+      "mTimestamp": {
+        "mtime": 1759326559348.1843,
+        "uuid": "f08c8746-7cff-44f8-92a0-8a8697acb29a"
+      },
+      "chunkId": "d231bc6361827e437aec97d067914efab5053749",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 44
+            },
+            "end": {
+              "line": 5,
+              "column": 48
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/ExitZone.ts": {
+      "mTimestamp": {
+        "mtime": 1759384361348.65,
+        "uuid": "12ba98f3-c645-4568-8260-9ff892bba71e"
+      },
+      "chunkId": "f8d3fe3b1be13af7aef7106d093231f19b1448cd",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 72
+            },
+            "end": {
+              "line": 5,
+              "column": 76
+            }
+          }
+        },
+        {
+          "value": "./CharacterState",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 51
+            },
+            "end": {
+              "line": 6,
+              "column": 69
+            }
+          }
+        },
+        {
+          "value": "./GameManager",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 28
+            },
+            "end": {
+              "line": 7,
+              "column": 43
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/GameManager.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/GameManager.ts": {
+      "mTimestamp": {
+        "mtime": 1759390699767.9207,
+        "uuid": "1f21c50b-7fbb-4927-9530-6e02e753d2e1"
+      },
+      "chunkId": "d915583fc550bfb673afdbbdc29cfa661f0bf950",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 71
+            },
+            "end": {
+              "line": 5,
+              "column": 75
+            }
+          }
+        },
+        {
+          "value": "./CharacterState",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 51
+            },
+            "end": {
+              "line": 6,
+              "column": 69
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/GameUI.ts": {
+      "mTimestamp": {
+        "mtime": 1759385679125.7727,
+        "uuid": "72d717e2-49bd-4621-96fa-2eaefaf8392f"
+      },
+      "chunkId": "4c798e5fb0356fa0c6fb0a5c27f209754e0ca254",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 51
+            },
+            "end": {
+              "line": 4,
+              "column": 55
+            }
+          }
+        },
+        {
+          "value": "./GameManager",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 50
+            },
+            "end": {
+              "line": 5,
+              "column": 65
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/GameManager.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/HangTimerUI.ts": {
+      "mTimestamp": {
+        "mtime": 1759385644735.3347,
+        "uuid": "eec4101c-c17b-4b25-93f0-e593657f68bd"
+      },
+      "chunkId": "bdbeefb4e6fb1f5276dc4b58cf87bd77f6f6bf2c",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 59
+            },
+            "end": {
+              "line": 5,
+              "column": 63
+            }
+          }
+        },
+        {
+          "value": "./CharacterState",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 51
+            },
+            "end": {
+              "line": 6,
+              "column": 69
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Hunter.ts": {
+      "mTimestamp": {
+        "mtime": 1759317548513.1167,
+        "uuid": "79566a70-94b4-4763-942c-8f7859b609bb"
+      },
+      "chunkId": "0db912a3f7ab24e199b4e59bbc55e5a92eb72474",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 78
+            },
+            "end": {
+              "line": 5,
+              "column": 82
+            }
+          }
+        },
+        {
+          "value": "./CharacterState",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 51
+            },
+            "end": {
+              "line": 6,
+              "column": 69
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/HunterController.ts": {
+      "mTimestamp": {
+        "mtime": 1759387044055.3245,
+        "uuid": "7cd0992f-c733-40f7-b907-25ddb1f7ebf7"
+      },
+      "chunkId": "def5a9cb9539e55c37777bce69122d764f7d0e66",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 77
+            },
+            "end": {
+              "line": 5,
+              "column": 81
+            }
+          }
+        },
+        {
+          "value": "./Joystick",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 25
+            },
+            "end": {
+              "line": 6,
+              "column": 37
+            }
+          }
+        },
+        {
+          "value": "./CharacterState",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 51
+            },
+            "end": {
+              "line": 7,
+              "column": 69
+            }
+          }
+        },
+        {
+          "value": "./Hunter",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 23
+            },
+            "end": {
+              "line": 8,
+              "column": 33
+            }
+          }
+        },
+        {
+          "value": "./Board",
+          "resolved": "__unresolved_4",
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 22
+            },
+            "end": {
+              "line": 9,
+              "column": 31
+            }
+          }
+        },
+        {
+          "value": "./CharacterAnimationController",
+          "resolved": "__unresolved_5",
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 45
+            },
+            "end": {
+              "line": 10,
+              "column": 77
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Joystick.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Hunter.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Board.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterAnimationController.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/HunterUI.ts": {
+      "mTimestamp": {
+        "mtime": 1759384680868.6553,
+        "uuid": "5fc2eb4f-331f-45de-929b-96b4df41bf1a"
+      },
+      "chunkId": "3f991f6bfe26687cb2ab5929938175bee08ffe12",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 59
+            },
+            "end": {
+              "line": 4,
+              "column": 63
+            }
+          }
+        },
+        {
+          "value": "./HunterController",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 33
+            },
+            "end": {
+              "line": 5,
+              "column": 53
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/HunterController.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Interactable.ts": {
+      "mTimestamp": {
+        "mtime": 1759310943851.6323,
+        "uuid": "ce36c3de-75f6-44b5-ba02-05eeaf890e8e"
+      },
+      "chunkId": "7de2a75db939658764c38e8594d90418669ba3b4",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 44
+            },
+            "end": {
+              "line": 4,
+              "column": 48
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/InteractionUI.ts": {
+      "mTimestamp": {
+        "mtime": 1759316349147.5693,
+        "uuid": "1ceea84f-a3a8-4b4f-977b-548f50955f4e"
+      },
+      "chunkId": "a3262ea54dd511867d6c3e09053b4bd19648cdf0",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 83
+            },
+            "end": {
+              "line": 5,
+              "column": 87
+            }
+          }
+        },
+        {
+          "value": "./PlayerController",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 33
+            },
+            "end": {
+              "line": 6,
+              "column": 53
+            }
+          }
+        },
+        {
+          "value": "./CharacterState",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 31
+            },
+            "end": {
+              "line": 7,
+              "column": 49
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/PlayerController.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Ore.ts": {
+      "mTimestamp": {
+        "mtime": 1759384331276.7773,
+        "uuid": "ce21e676-2c89-42a1-81b5-93afcea9427d"
+      },
+      "chunkId": "69808c44993652467c023fc6e4360726e52f53d7",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 57
+            },
+            "end": {
+              "line": 5,
+              "column": 61
+            }
+          }
+        },
+        {
+          "value": "./Interactable",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 29
+            },
+            "end": {
+              "line": 6,
+              "column": 45
+            }
+          }
+        },
+        {
+          "value": "./GameManager",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 28
+            },
+            "end": {
+              "line": 7,
+              "column": 43
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/Interactable.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/GameManager.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/TeamStatusUI.ts": {
+      "mTimestamp": {
+        "mtime": 1759390474948.7656,
+        "uuid": "75663a9b-815d-4d0e-8bc9-f9084467b28b"
+      },
+      "chunkId": "d241ced9da75f9bf70b14f6218700408db61d616",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 66
+            },
+            "end": {
+              "line": 5,
+              "column": 70
+            }
+          }
+        },
+        {
+          "value": "./CharacterState",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 51
+            },
+            "end": {
+              "line": 6,
+              "column": 69
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/UIManager.ts": {
+      "mTimestamp": {
+        "mtime": 1759390420997.0012,
+        "uuid": "789cbcf1-7840-4b51-adb5-f07ae1b03675"
+      },
+      "chunkId": "eec745fa4777e5392c0dba6aac1d3cdb385700d7",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 66
+            },
+            "end": {
+              "line": 5,
+              "column": 70
+            }
+          }
+        },
+        {
+          "value": "./GameManager",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 39
+            },
+            "end": {
+              "line": 6,
+              "column": 54
+            }
+          }
+        },
+        {
+          "value": "./CharacterState",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 72
+            },
+            "end": {
+              "line": 7,
+              "column": 90
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/GameManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/CharacterState.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/NetworkGameManager.ts": {
+      "mTimestamp": {
+        "mtime": 1759478891970.8733,
+        "uuid": "a7b60e84-bdd7-47e6-8c7c-bc745b616c56"
+      },
+      "chunkId": "045d9af315ae1b025d13eaa071f30fdbc345cc23",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 48
+            },
+            "end": {
+              "line": 5,
+              "column": 52
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/NetworkManager.ts": {
+      "mTimestamp": {
+        "mtime": 1759458064776.5278,
+        "uuid": "f08f65f8-a35f-4f05-b47d-e7680becb530"
+      },
+      "chunkId": "e315743c8a27741f9b866a2709ed8cbfdf823f4d",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 48
+            },
+            "end": {
+              "line": 8,
+              "column": 52
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/PlayerSyncController.ts": {
+      "mTimestamp": {
+        "mtime": 1759452357677.1287,
+        "uuid": "383a47cd-0593-4936-9126-89aca058397f"
+      },
+      "chunkId": "46c75db0a81d46e9963cb06ce3ae4919cde43cbd",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 50
+            },
+            "end": {
+              "line": 4,
+              "column": 54
+            }
+          }
+        },
+        {
+          "value": "./NetworkManager",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 31
+            },
+            "end": {
+              "line": 5,
+              "column": 49
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/NetworkManager.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/RemotePlayerController.ts": {
+      "mTimestamp": {
+        "mtime": 1759452407993.917,
+        "uuid": "f65bb099-3c3b-400a-b458-41fe69f9caaa"
+      },
+      "chunkId": "9e6116588c00dc563ea90e4ba69ccfcd8eb15b29",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 63
+            },
+            "end": {
+              "line": 4,
+              "column": 67
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/RemotePlayerManager.ts": {
+      "mTimestamp": {
+        "mtime": 1759458284474.9727,
+        "uuid": "c90a674c-613e-412e-ba4c-fd139b49e0b4"
+      },
+      "chunkId": "8337e0bf0d1e651b8f7ab9c509a9e738118e2ec1",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 71
+            },
+            "end": {
+              "line": 4,
+              "column": 75
+            }
+          }
+        },
+        {
+          "value": "./NetworkManager",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 43
+            },
+            "end": {
+              "line": 5,
+              "column": 61
+            }
+          }
+        },
+        {
+          "value": "./RemotePlayerController",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 39
+            },
+            "end": {
+              "line": 6,
+              "column": 65
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/NetworkManager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/RemotePlayerController.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/ui/LobbyUI.ts": {
+      "mTimestamp": {
+        "mtime": 1759457750991.6497,
+        "uuid": "92152727-65f8-491a-bd14-ec13442d2e53"
+      },
+      "chunkId": "91470b4a8e6dca1621908971d7574bb4ac824115",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 85
+            },
+            "end": {
+              "line": 4,
+              "column": 89
+            }
+          }
+        },
+        {
+          "value": "../network/NetworkManager",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 31
+            },
+            "end": {
+              "line": 5,
+              "column": 58
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/NetworkManager.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/ui/RoomUI.ts": {
+      "mTimestamp": {
+        "mtime": 1759454302793.1567,
+        "uuid": "0992d432-0a62-4acb-911a-c9f69be0c2a5"
+      },
+      "chunkId": "c66aa297d334dec4683f69c009f31775340642a1",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 66
+            },
+            "end": {
+              "line": 4,
+              "column": 70
+            }
+          }
+        },
+        {
+          "value": "../network/NetworkManager",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 31
+            },
+            "end": {
+              "line": 5,
+              "column": 58
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/scripts/network/NetworkManager.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/clare/Desktop/%E5%89%8D%E5%93%A8AI%E5%B0%8F%E8%AF%BE/ClareProject/Cute-Pet-Escape-Project/CocosProject/assets/libs/colyseus.js": {
+      "mTimestamp": {
+        "mtime": 1759453956644.2603,
+        "uuid": "b2935e1f-2d02-46f5-a8c8-c100338e110e"
+      },
+      "chunkId": "cd81161da4714607f85da0622d0c2ba1877fd31b",
+      "imports": [
+        {
+          "value": "cce:/internal/ml/cjs-loader.mjs",
+          "resolved": "__unresolved_0",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 23
+            },
+            "end": {
+              "line": 1,
+              "column": 56
+            }
+          }
+        }
+      ],
+      "type": "commonjs",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/ml/cjs-loader.mjs"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "cce:/internal/ml/cjs-loader.mjs": {
+      "mTimestamp": 1759557227075,
+      "chunkId": "a0d063530de23ddade53e1a935bf64c81277c061",
       "imports": [],
       "type": "esm",
       "resolutions": []

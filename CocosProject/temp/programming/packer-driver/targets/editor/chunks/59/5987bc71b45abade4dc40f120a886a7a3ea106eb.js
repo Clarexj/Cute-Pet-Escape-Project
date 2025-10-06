@@ -1,7 +1,7 @@
 System.register(["cc"], function (_export, _context) {
   "use strict";
 
-  var _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, _decorator, Component, Node, Vec3, Quat, _dec, _dec2, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _crd, ccclass, property, CameraFollow;
+  var _cclegacy, __checkObsolete__, __checkObsoleteInNamespace__, _decorator, Component, Node, Vec3, Quat, _dec, _dec2, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _crd, ccclass, property, CameraFollow;
 
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
 
@@ -24,7 +24,7 @@ System.register(["cc"], function (_export, _context) {
       _crd = true;
 
       _cclegacy._RF.push({}, "a0a58rb91lC6oMQa0RNXMpU", "CameraFollow", undefined); // 文件名: CameraFollow.ts
-      // 功能：第三人称摄像机跟随系统（为任务1.2的镜头旋转预留接口）
+      // 功能：第三人称摄像机跟随系统，支持水平旋转（任务1.2）
 
 
       __checkObsolete__(['_decorator', 'Component', 'Node', 'Vec3', 'Quat']);
@@ -56,14 +56,25 @@ System.register(["cc"], function (_export, _context) {
           _initializerDefineProperty(this, "pitchAngle", _descriptor6, this);
 
           // 俯仰角度（向下看的角度）
+          _initializerDefineProperty(this, "rotationSmoothSpeed", _descriptor7, this);
+
+          // 旋转平滑速度（优化：降低避免"飘"的感觉）
           this._currentOffset = new Vec3();
           // 当前偏移量
           this._targetOffset = new Vec3();
           // 目标偏移量
           this._lookAtPoint = new Vec3();
+          // 看向点
+          // 任务1.2新增：水平旋转角度（yaw angle）
+          this._yawAngle = 0;
+          // 当前水平旋转角度
+          this._targetYawAngle = 0;
+          // 目标水平旋转角度
+          // 性能优化：复用临时变量
+          this._tempVec3 = new Vec3();
+          this._tempQuat = new Quat();
         }
 
-        // 看向点
         start() {
           // 初始化摄像机偏移
           this.calculateTargetOffset();
@@ -74,7 +85,10 @@ System.register(["cc"], function (_export, _context) {
         }
 
         lateUpdate(deltaTime) {
-          if (!this.target) return; // 计算目标偏移
+          if (!this.target) return; // 平滑插值水平旋转角度
+
+          const angleDiff = this._targetYawAngle - this._yawAngle;
+          this._yawAngle += angleDiff * this.rotationSmoothSpeed * deltaTime; // 计算目标偏移
 
           this.calculateTargetOffset(); // 平滑插值到目标偏移
 
@@ -83,21 +97,23 @@ System.register(["cc"], function (_export, _context) {
           this.updateCameraPosition(deltaTime);
         }
         /**
-         * 计算摄像机相对角色的目标偏移
-         * （为任务1.2预留：这里可以加入水平旋转角度参数）
+         * 计算摄像机相对角色的目标偏移（支持水平旋转）
          */
 
 
         calculateTargetOffset() {
-          // 当前是固定的后上方视角
-          // 任务1.2时，可以根据玩家拖动修改这个偏移方向
           // 俯仰角转弧度
-          const pitchRad = this.pitchAngle * (Math.PI / 180); // 计算水平距离和垂直距离
+          const pitchRad = this.pitchAngle * (Math.PI / 180); // 水平角转弧度
+
+          const yawRad = this._yawAngle * (Math.PI / 180); // 计算水平距离和垂直距离
 
           const horizontalDist = this.followDistance * Math.cos(pitchRad);
-          const verticalDist = this.followDistance * Math.sin(pitchRad) + this.followHeight; // 默认在角色正后方（可以后续改为可旋转）
+          const verticalDist = this.followDistance * Math.sin(pitchRad) + this.followHeight; // 根据水平旋转角度计算偏移（围绕角色旋转）
 
-          this._targetOffset.set(0, verticalDist, -horizontalDist);
+          const offsetX = horizontalDist * Math.sin(yawRad);
+          const offsetZ = -horizontalDist * Math.cos(yawRad);
+
+          this._targetOffset.set(offsetX, verticalDist, offsetZ);
         }
         /**
          * 更新摄像机位置和朝向
@@ -105,22 +121,54 @@ System.register(["cc"], function (_export, _context) {
 
 
         updateCameraPosition(deltaTime) {
-          // 摄像机位置 = 角色位置 + 偏移
-          const targetPos = this.target.getWorldPosition();
-          const cameraPos = targetPos.clone().add(this._currentOffset);
-          this.node.setWorldPosition(cameraPos); // 摄像机看向角色（加上高度偏移）
+          // 获取角色位置（只获取一次，复用）
+          const targetPos = this.target.getWorldPosition(this._tempVec3); // 摄像机位置 = 角色位置 + 偏移
 
-          this._lookAtPoint.set(targetPos.x, targetPos.y + this.lookAtHeight, targetPos.z); // 计算朝向
+          Vec3.add(this._tempVec3, targetPos, this._currentOffset);
+          this.node.setWorldPosition(this._tempVec3); // 摄像机看向角色（加上高度偏移）
+
+          this._lookAtPoint.set(targetPos.x, targetPos.y + this.lookAtHeight, targetPos.z); // 计算朝向（复用_tempVec3）
 
 
-          const forward = this._lookAtPoint.clone().subtract(cameraPos).normalize();
+          Vec3.subtract(this._tempVec3, this._lookAtPoint, this.node.worldPosition);
 
-          const rotation = new Quat();
-          Quat.fromViewUp(rotation, forward);
-          this.node.setWorldRotation(rotation);
+          this._tempVec3.normalize();
+
+          Quat.fromViewUp(this._tempQuat, this._tempVec3);
+          this.node.setWorldRotation(this._tempQuat);
         }
         /**
-         * 设置俯仰角（任务1.2可能会用到）
+         * 设置水平旋转角度（任务1.2新增）
+         * @param angle 水平旋转角度（度）
+         */
+
+
+        setYawAngle(angle) {
+          this._targetYawAngle = angle;
+        }
+        /**
+         * 增加水平旋转角度（任务1.2新增）
+         * @param delta 角度增量（度）
+         */
+
+
+        addYawAngle(delta) {
+          this._targetYawAngle += delta; // 规范化到-180到180度
+
+          while (this._targetYawAngle > 180) this._targetYawAngle -= 360;
+
+          while (this._targetYawAngle < -180) this._targetYawAngle += 360;
+        }
+        /**
+         * 获取当前水平旋转角度
+         */
+
+
+        getYawAngle() {
+          return this._yawAngle;
+        }
+        /**
+         * 设置俯仰角
          */
 
 
@@ -177,6 +225,13 @@ System.register(["cc"], function (_export, _context) {
         writable: true,
         initializer: function () {
           return 30.0;
+        }
+      }), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, "rotationSmoothSpeed", [property], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function () {
+          return 7.0;
         }
       })), _class2)) || _class));
 

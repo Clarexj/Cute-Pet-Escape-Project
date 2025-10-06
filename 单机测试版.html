@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萌宠大逃亡 - 单机测试版</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: white;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .header-left { display: flex; gap: 30px; align-items: center; }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .info-item strong {
+            color: #ffd700;
+            font-size: 16px;
+        }
+
+        .game-container {
+            display: flex;
+            height: calc(100vh - 70px);
+        }
+
+        .game-area {
+            flex: 1;
+            position: relative;
+            background: linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), #0f3460;
+            background-size: 50px 50px;
+        }
+
+        /* 玩家 */
+        .player {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            transition: all 0.15s ease-out;
+            border: 4px solid;
+            z-index: 100;
+        }
+
+        .player.survivor {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #4a5fd4;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        .player-name {
+            position: absolute;
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            white-space: nowrap;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* 矿石 */
+        .ore {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            z-index: 5;
+        }
+
+        .ore.collected {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        /* 逃生门 */
+        .exit-zone {
+            position: absolute;
+            width: 100px;
+            height: 120px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 0 30px rgba(56, 239, 125, 0.5);
+            border: 4px solid #2ecc71;
+            z-index: 1;
+        }
+
+        .exit-zone-label {
+            font-size: 12px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .exit-zone.hidden {
+            display: none;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            width: 320px;
+            background: #16213e;
+            padding: 20px;
+            overflow-y: auto;
+            border-left: 2px solid #667eea;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #ffd700;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 5px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.05);
+            margin-bottom: 6px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .stat-value {
+            color: #67e7d5;
+            font-weight: bold;
+        }
+
+        /* 控制面板 */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #667eea;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+        }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            grid-template-rows: repeat(2, 60px);
+            gap: 8px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn:nth-child(1) { grid-column: 2; }
+        .btn:nth-child(2) { grid-column: 1; grid-row: 2; }
+        .btn:nth-child(3) { grid-column: 2; grid-row: 2; }
+        .btn:nth-child(4) { grid-column: 3; grid-row: 2; }
+
+        /* 提示消息 */
+        .toast {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.95);
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid #ffd700;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .toast.show { opacity: 1; }
+
+        /* 游戏结束 */
+        .game-over {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.95);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            border: 4px solid #ffd700;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            display: none;
+            z-index: 2000;
+        }
+
+        .game-over.show { display: block; }
+
+        .game-over-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .game-over-message {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .action-btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="info-item">🎮 <strong>萌宠大逃亡 - 单机测试版</strong></div>
+            <div class="info-item">⏱️ 时间: <strong id="timer">05:00</strong></div>
+        </div>
+        <div>
+            <button class="action-btn" onclick="location.reload()" style="padding: 8px 20px; font-size: 14px;">重新开始</button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="game-container">
+        <!-- Game Area -->
+        <div class="game-area" id="gameArea">
+            <!-- 玩家 -->
+            <div class="player survivor" id="player">
+                🐱
+                <div class="player-name">你</div>
+            </div>
+
+            <!-- 逃生门 -->
+            <div class="exit-zone hidden" id="exitZone">
+                🚪
+                <div class="exit-zone-label">逃生门</div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="section">
+                <div class="section-title">📊 游戏状态</div>
+                <div class="stat-item">
+                    <span>游戏状态</span>
+                    <span class="stat-value" id="gameState">游戏中</span>
+                </div>
+                <div class="stat-item">
+                    <span>矿石收集</span>
+                    <span class="stat-value" id="oreCount">0/8</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">ℹ️ 游戏说明</div>
+                <div style="font-size: 12px; line-height: 1.8; opacity: 0.8;">
+                    <p><strong>操作方式：</strong></p>
+                    <p>• 点击方向按钮移动</p>
+                    <p>• 或使用键盘 ↑↓←→ / WASD</p>
+                    <br>
+                    <p><strong>游戏目标：</strong></p>
+                    <p>• 靠近矿石💎自动收集</p>
+                    <p>• 收集8个矿石开启逃生门🚪</p>
+                    <p>• 进入逃生门即可胜利！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <div class="btn-grid">
+            <button class="btn" onclick="move(0, -40)">↑</button>
+            <button class="btn" onclick="move(-40, 0)">←</button>
+            <button class="btn" onclick="move(0, 40)">↓</button>
+            <button class="btn" onclick="move(40, 0)">→</button>
+        </div>
+    </div>
+
+    <!-- Game Over -->
+    <div class="game-over" id="gameOver">
+        <div class="game-over-title" id="gameOverTitle">🏆</div>
+        <div class="game-over-message" id="gameOverMessage"></div>
+        <button class="action-btn" onclick="location.reload()">重新开始</button>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // 游戏状态
+        let oreCollected = 0;
+        let oresRequired = 8;
+        let timeRemaining = 300;
+        let gameStatus = 'playing';
+        let escaped = false;
+
+        // 初始化
+        function init() {
+            const player = document.getElementById('player');
+            player.style.left = '500px';
+            player.style.top = '300px';
+
+            spawnOres();
+            startTimer();
+            startAutoCollect();
+            startEscapeCheck();
+
+            showToast('🎮 游戏开始！收集8个矿石！');
+        }
+
+        // 生成矿石
+        function spawnOres() {
+            const gameArea = document.getElementById('gameArea');
+            const orePositions = [
+                {x: 150, y: 150}, {x: 400, y: 150}, {x: 650, y: 150}, {x: 900, y: 150},
+                {x: 150, y: 350}, {x: 400, y: 350}, {x: 650, y: 350}, {x: 900, y: 350}
+            ];
+
+            orePositions.forEach((pos, index) => {
+                const ore = document.createElement('div');
+                ore.className = 'ore';
+                ore.id = `ore-${index}`;
+                ore.innerHTML = '💎';
+                ore.style.left = pos.x + 'px';
+                ore.style.top = pos.y + 'px';
+                gameArea.appendChild(ore);
+            });
+        }
+
+        // 移动
+        function move(dx, dy) {
+            if (gameStatus !== 'playing' || escaped) return;
+
+            const player = document.getElementById('player');
+            let x = parseInt(player.style.left) || 500;
+            let y = parseInt(player.style.top) || 300;
+
+            x += dx;
+            y += dy;
+
+            const gameArea = document.getElementById('gameArea');
+            x = Math.max(30, Math.min(gameArea.clientWidth - 390, x));
+            y = Math.max(30, Math.min(gameArea.clientHeight - 90, y));
+
+            player.style.left = x + 'px';
+            player.style.top = y + 'px';
+        }
+
+        // 键盘控制
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowUp': case 'w': case 'W': move(0, -40); break;
+                case 'ArrowDown': case 's': case 'S': move(0, 40); break;
+                case 'ArrowLeft': case 'a': case 'A': move(-40, 0); break;
+                case 'ArrowRight': case 'd': case 'D': move(40, 0); break;
+            }
+        });
+
+        // 自动收集矿石
+        function startAutoCollect() {
+            setInterval(() => {
+                if (gameStatus !== 'playing') return;
+
+                const player = document.getElementById('player');
+                const playerX = parseInt(player.style.left);
+                const playerY = parseInt(player.style.top);
+
+                for (let i = 0; i < oresRequired; i++) {
+                    const ore = document.getElementById(`ore-${i}`);
+                    if (!ore || ore.classList.contains('collected')) continue;
+
+                    const oreX = parseInt(ore.style.left);
+                    const oreY = parseInt(ore.style.top);
+                    const distance = Math.sqrt((playerX - oreX) ** 2 + (playerY - oreY) ** 2);
+
+                    if (distance < 60) {
+                        ore.classList.add('collected');
+                        oreCollected++;
+                        updateStats();
+                        showToast('💎 收集了矿石！');
+
+                        if (oreCollected >= oresRequired) {
+                            openExitZone();
+                        }
+                        break;
+                    }
+                }
+            }, 100);
+        }
+
+        // 开启逃生门
+        function openExitZone() {
+            const exitZone = document.getElementById('exitZone');
+            exitZone.classList.remove('hidden');
+            exitZone.style.left = '50%';
+            exitZone.style.top = '50%';
+            exitZone.style.transform = 'translate(-50%, -50%)';
+            showToast('🚪 逃生门已开启！快进入逃生门！', 3000);
+        }
+
+        // 检测逃脱
+        function startEscapeCheck() {
+            setInterval(() => {
+                if (gameStatus !== 'playing' || escaped) return;
+                if (oreCollected < oresRequired) return;
+
+                const player = document.getElementById('player');
+                const exitZone = document.getElementById('exitZone');
+
+                if (exitZone.classList.contains('hidden')) return;
+
+                const playerX = parseInt(player.style.left);
+                const playerY = parseInt(player.style.top);
+                const exitX = window.innerWidth / 2 - 160; // 调整偏移
+                const exitY = (window.innerHeight - 70) / 2;
+
+                const distance = Math.sqrt((playerX - exitX) ** 2 + (playerY - exitY) ** 2);
+
+                if (distance < 100) {
+                    escaped = true;
+                    endGame('win');
+                }
+            }, 100);
+        }
+
+        // 计时器
+        function startTimer() {
+            setInterval(() => {
+                if (gameStatus !== 'playing') return;
+
+                timeRemaining--;
+                if (timeRemaining <= 0) {
+                    timeRemaining = 0;
+                    endGame('timeout');
+                }
+
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                document.getElementById('timer').textContent =
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // 更新统计
+        function updateStats() {
+            document.getElementById('oreCount').textContent = `${oreCollected}/${oresRequired}`;
+        }
+
+        // 结束游戏
+        function endGame(result) {
+            gameStatus = 'ended';
+
+            const gameOverPanel = document.getElementById('gameOver');
+            const title = document.getElementById('gameOverTitle');
+            const message = document.getElementById('gameOverMessage');
+
+            if (result === 'win') {
+                title.textContent = '🎉 胜利！';
+                message.textContent = '恭喜你成功逃脱！';
+            } else if (result === 'timeout') {
+                title.textContent = '⏰ 时间到！';
+                message.textContent = `游戏结束！你收集了 ${oreCollected}/${oresRequired} 个矿石。`;
+            }
+
+            gameOverPanel.classList.add('show');
+        }
+
+        // 提示消息
+        function showToast(message, duration = 2000) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
+        }
+
+        // 启动游戏
+        window.onload = init;
+    </script>
+</body>
+</html>

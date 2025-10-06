@@ -1,7 +1,8 @@
 {
   "state": {
     "expandUuids": [
-      "db://assets"
+      "db://assets",
+      "9a04a58f-4685-4700-96ce-2c5f733d726b"
     ],
     "sortType": "name"
   }
